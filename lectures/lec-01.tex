@@ -1,0 +1,95 @@
+\lesson{Thu, 26 January 2023, 2:50pm – 4:10pm}{Week 1, Thursday}
+
+\begin{definition}
+    A \emph{bit} is a binary digit that can take on one of two values, 0 or 1.
+\end{definition}
+\begin{definition}
+    A \emph{qubit} is analogous to a bit in a quantum computer, but can take on a superposition of the values 0 and 1–it can be in a state of 0 and 1 at the same time.
+\end{definition}
+\begin{definition}
+    The \emph{planetary model of the atom} is a model of the atom in which the electrons orbit the nucleus in a circular orbit. The planetary model of the atom was developed by Niels Bohr in 1913.
+\end{definition}
+The Stern-Gerlach experiment demonstrated that the magnetic field of an electron can be used to separate the electron into two different states, one with a magnetic field pointing up and one with a magnetic field pointing down. Silver atoms with random spatial orientations were sent straight between two magnets, with the atoms hitting a detector on the other side. The detector was able to detect which direction the atoms were moving in, and the results showed that the atoms were split into two groups, one with a magnetic field pointing up and one with a magnetic field pointing down–'the magnetism was quantised'. This was not expected–the initial hypothesis was that the atoms would form a continuous pattern instead of falling onto two points on the detector, as the spatial orientations were random. This experiment was performed by Walther Gerlach and Hans Stern in 1922.
+\begin{note}
+    An electron orbiting in a circular orbit generates a magnetic field.
+\end{note}
+Particles have some properties, such as `colour' (with two possible values: black or white), and `hardness' (with two possible values: soft, hard). We can build detectors that, when given many particles, show a long-run probability of detecting a particle with a certain property. These detectors can be repeated (eg, a colour detector followed by another colour detector) without the probability changing. These detectors demonstrate that the properties are also probabilistically independent (as in, the results are not correlated between a particle's colour, hardness, etc).
+
+\begin{definition}
+    The \emph{uncertainty principle} states that the probability of detecting a particle with a certain property is proportional to the probability of detecting a particle with a different property. This is demonstrated in Figure~\ref{fig:experiment1}. In other words, the more certain we are of detecting a particle with a certain property, the less certain we are of detecting a particle with a different property.
+\end{definition}
+
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[shorten >=4pt,node distance=3cm,on grid,auto]
+        \node[draw,rectangle] (a)   {Colour};
+        \node[] (a_left) [left=of a] {};
+        \coordinate[below of=a] (a_below);
+        \node[draw,rectangle] (b) [right=of a] {Hardness};
+        \coordinate[below of=b] (b_below);
+        \node[draw,rectangle] (c) [right=of b] {Colour};
+        \coordinate[right of=c] (c_right);
+        \coordinate[below of=c] (c_below);
+        \path[-latex,shorten >= 2pt, shorten <= 2pt]
+            (a_left)
+                edge node {$1000$} (a)
+            (a)
+                edge node {B $500$} (b)
+                edge node {W $500$} (a_below)
+            (b)
+                edge node {S $250$} (c)
+                edge node {H $250$} (b_below)
+            (c)
+                edge node {B $125$} (c_right)
+                edge node {W $125$} (c_below);
+    \end{tikzpicture}
+    \caption{Repeated detectors that detect colour and hardness, demonstrating the uncertainty principle. By measuring the hardness, we became uncertain of the colour.}
+    \label{fig:experiment1}
+\end{figure}
+
+% \subsection{Sub Section 1}
+% \label{sub_sec:sub_section_1}
+
+% \begin{theorem}
+% This is a theorem.
+% \end{theorem}
+% \begin{proof}
+% This is a proof.
+% \end{proof}
+% \begin{example}
+% This is an example.
+% \end{example}
+% \begin{explanation}
+% This is an explanation.
+% \end{explanation}
+% \begin{claim}
+% This is a claim.
+% \end{claim}
+% \begin{corollary}
+% This is a corollary.
+% \end{corollary}
+% \begin{prop}
+% This is a proposition.
+% \end{prop}
+% \begin{lemma}
+% This is a lemma.
+% \end{lemma}
+% \begin{question}
+% This is a question.
+% \end{question}
+% \begin{solution}
+% This is a solution.
+% \end{solution}
+% \begin{exercise}
+% This is an exercise.
+% \end{exercise}
+% \begin{definition}[Definition]
+% This is a definition.
+% \end{definition}
+% \begin{note}
+% This is a note.
+% \end{note}
+
+% subsection sub_section_1 (end)
+
+\newpage
