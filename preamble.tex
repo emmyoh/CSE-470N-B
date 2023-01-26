@@ -25,7 +25,17 @@
 % Use a smiley face for our qed symbol.
 \usepackage{tikzsymbols}
 
+\usepackage{tikz-3dplot}
+
 \usetikzlibrary{automata,positioning}
+\tikzset{
+  vlak/.style={fill=lightgray!80,draw=none,opacity=1},
+  obj/.style={fill=lightgray,draw=none},
+  opp/.style={fill=lightgray,opacity=0.6,draw=none},
+  rand/.style={thick,draw=gray},
+  vector/.style={>=stealth',draw=black,line width=0.55pt}
+  }
+  \tdplotsetmaincoords{75}{140}
 
 \renewcommand\qedsymbol{$\Laughey$}
 
