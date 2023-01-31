@@ -1,48 +1,114 @@
 
-\lesson{Oct 19 2022 Wen (12:28:10)}{Lecture Title}
+\lesson{Tue, 31 January 2023, 2:50pm – 4:10pm}{Week 2, Tuesday}
 
-\subsection{Sub Section 2}
-\label{sub_sec:sub_section_2}
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[shorten >=4pt,node distance=3cm,on grid,auto]
+        \node[draw,rectangle] (a)   {Up-down};
+        \node[] (a_left) [left=of a] {};
+        \coordinate[below of=a] (a_below);
 
-\begin{theorem}
-This is a theorem.
-\end{theorem}
-\begin{proof}
-This is a proof.
-\end{proof}
-\begin{example}
-This is an example.
-\end{example}
-\begin{explanation}
-This is an explanation.
-\end{explanation}
-\begin{claim}
-This is a claim.
-\end{claim}
-\begin{corollary}
-This is a corollary.
-\end{corollary}
-\begin{prop}
-This is a proposition.
-\end{prop}
-\begin{lemma}
-This is a lemma.
-\end{lemma}
-\begin{question}
-This is a question.
-\end{question}
-\begin{solution}
-This is a solution.
-\end{solution}
-\begin{exercise}
-This is an exercise.
-\end{exercise}
-\begin{definition}[Definition]
-This is a definition.
+        \node[draw,rectangle,right of=a] (b)   {Up-down};
+        \coordinate[below of=b] (b_below);
+        \coordinate[right of=b] (b_right);
+        \path[-latex,shorten >= 2pt, shorten <= 2pt]
+            (a_left)
+                edge node {} (a)
+            (a)
+                edge node {↓ $50\%$} (a_below)
+                edge node {↑ $50\%$} (b)           
+            (b)
+                edge node {↓ $100\%$} (b_below)
+                edge node {↑ $0\%$} (b_right);
+    \end{tikzpicture}
+    \caption{Two repeated detectors of whether a particle's spin is up or down. The same property is being measured; the percentages heading into the second detector are known.}
+    \label{fig:experiment2}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[shorten >=4pt,node distance=3cm,on grid,auto]
+        \node[draw,rectangle] (a)   {Up-down};
+        \node[] (a_left) [left=of a] {};
+        \coordinate[below of=a] (a_below);
+
+        \node[draw,rectangle,right of=a] (b)   {Left-right};
+        \coordinate[below of=b] (b_below);
+        
+        \node[draw,rectangle,right of=b] (c)   {Up-down};
+        \coordinate[below of=c] (c_below);
+        \coordinate[right of=c] (c_right);
+        \path[-latex,shorten >= 2pt, shorten <= 2pt]
+            (a_left)
+                edge node {} (a)
+            (a)
+                edge node {↓ $50\%$} (a_below)
+                edge node {↑ $50\%$} (b)           
+            (b)
+                edge node {← $50\%$} (b_below)
+                edge node {→ $50\%$} (c)
+            (c)
+                edge node {↓ $50\%$} (c_below)
+                edge node {↑ $50\%$} (c_right);
+    \end{tikzpicture}
+    \caption{Three repeated detectors, now detecting three different properties of a particle. Now, the percentages for spin up or down are not known; the first and last detectors are probabilistically independent because of the middle detector.}
+    \label{fig:experiment3}
+\end{figure}
+
+`To talk about an electron that is both spin up and spin right is nonsensical.'
+
+\begin{definition}
+    \emph{Tunneling} is a phenomenon in quantum mechanics where an object on the quantum scale can penetrate barriers in a manner that's contradictory to what classical mechanics predicts. In other words, an object can sometimes move through something that should seemingly stop its movement.
 \end{definition}
-\begin{note}
-This is a note.
-\end{note}
+
+\begin{definition}
+    \emph{Quantum decoherence} is when the wave function that describes the quantum state of a particle `collapses' (ie, the quantum state can no longer be predicted or described by the wave function). With decoherence, information about the system is lost into the environment; if a quantum system were perfectly isolated (ie, if nothing could interact with it), it would maintain coherence indefinitely.
+\end{definition}
+
+With $n$ qubits, a quantum algorithm can search up to $2^n$ states simultaneously. This is the advantage of quantum computers–modelling complex systems and searching through a large set of possibilities is where quantum computers can be useful.
+
+% \subsection{Sub Section 2}
+% \label{sub_sec:sub_section_2}
+
+% \begin{theorem}
+% This is a theorem.
+% \end{theorem}
+% \begin{proof}
+% This is a proof.
+% \end{proof}
+% \begin{example}
+% This is an example.
+% \end{example}
+% \begin{explanation}
+% This is an explanation.
+% \end{explanation}
+% \begin{claim}
+% This is a claim.
+% \end{claim}
+% \begin{corollary}
+% This is a corollary.
+% \end{corollary}
+% \begin{prop}
+% This is a proposition.
+% \end{prop}
+% \begin{lemma}
+% This is a lemma.
+% \end{lemma}
+% \begin{question}
+% This is a question.
+% \end{question}
+% \begin{solution}
+% This is a solution.
+% \end{solution}
+% \begin{exercise}
+% This is an exercise.
+% \end{exercise}
+% \begin{definition}[Definition]
+% This is a definition.
+% \end{definition}
+% \begin{note}
+% This is a note.
+% \end{note}
 
 % subsection sub_section_2 (end)
 
