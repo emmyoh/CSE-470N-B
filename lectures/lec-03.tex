@@ -1,34 +1,163 @@
-\lesson{Oct 17 2022 Mon (13:18:57)}{Todo Notes}
+\lesson{Thu, 2 February 2023, 2:50pm – 4:10pm}{Week 2, Thursday}
 
-\todo[inline]{The original todo note withouth changed colours.\newline Here's another line.}
-\lipsum[11]\unsure{Is this correct?}\unsure{I'm unsure about also!}
-\lipsum[11]\change{Change this!}
-\lipsum[11]\info{This can help me in chapter seven!}
-\lipsum[11]\improvement{This really needs to be improved!\\What was I thinking?!}
-\lipsum[11]\improvement[inline]{The following section needs to be rewritten!}
-\lipsum[11]
+`The state of a quantum system corresponds to a vector in a vector space of complex numbers.'
 
-\newpage
+\begin{definition}
+  A \emph{vector} is a list of numbers.
+  The length (or magnitude; denoted by $\lvert\ket{v}\rvert$) of a vector can be found by calculating the square root of the sum of squares of the horizontal and vertical components.
+  Scalar multiplication can be performed by multiplying every value of a vector by the scalar.
+  Vector addition can be performed by adding every element in a vector with the element in the corresponding position in another vector.
+  Vector multiplication (also referred to as finding a dot product, or an inner product; denoted by the product $\braket{v}{w}$) can be done between two vectors with the same dimensions. If the result of the multiplication is $0$, the two vectors are \emph{orthogonal}.
+\end{definition}
+\begin{example}
+  Row: $\bra{v} = \begin{bmatrix}
+    2 & 3 & 4
+  \end{bmatrix}$\\
+  Column: $\ket{w} = 
+  \begin{bmatrix}
+    2\\
+    3\\
+    4
+  \end{bmatrix}
+  $\\
+  Magnitude: $\ket{v} = 
+  \begin{bmatrix}
+    a\\
+    b\\
+  \end{bmatrix}$\\
+  $\lvert\ket{w}\rvert = \sqrt{a^2 + b^2}$\\
+  Scalar multiplication: $\ket{v} = 
+  \begin{bmatrix}
+    3\\
+    -2
+  \end{bmatrix}$\\
+  $4 \cdot \ket{v} = 4 \cdot
+  \begin{bmatrix}
+    3\\
+    -2
+  \end{bmatrix} = \begin{bmatrix}
+    12\\
+    -8
+  \end{bmatrix}$\\
+  Vector addition: $\begin{bmatrix}
+    1\\
+    2\\
+    3
+  \end{bmatrix} + \begin{bmatrix}
+    7\\
+    -3\\
+    4
+  \end{bmatrix} = \begin{bmatrix}
+    8\\
+    -1\\
+    7
+  \end{bmatrix}$\\
+  Multiplication: $\begin{bmatrix}
+    2 & 3 & 4
+  \end{bmatrix} \cdot \begin{bmatrix}
+    -1\\
+    2\\
+    7
+  \end{bmatrix} = -2 + 6 + 28 = 32$\\
+\end{example}
 
-\lesson{Oct 20 2022 Thu (12:28:10)}{Graphs}
+\begin{note}
+  For the purposes of this course, we must be able to find the length of a vector, preform scalar multiplication, perform vector addition, and check for orthogonality.
+\end{note}
 
-\noindent \begin{minipage}{0.53\textwidth}
-    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-    tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
-    vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-    no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
-    amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
-    labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
-    et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-    sanctus est Lorem ipsum dolor sit amet.
-\end{minipage}
-\hspace{0.05\textwidth}
-\begin{minipage}{0.4\textwidth}
-  \vspace{1cm}
-  \centering
-  \incfig{limit-graph}
-  \captionof{figure}{$y = g(t)$}
-  \label{fig:limit_graph}
-\end{minipage}
+\begin{definition}
+  A set of \emph{basis vectors} is a set of vectors that can be combined in a linear combination to make any other vector in the vector space.
+\end{definition}
+\begin{example}
+  Possible basis vectors with two dimensions:\\
+  $\begin{bmatrix}
+    76.9513\\
+    \pi
+  \end{bmatrix} = 76.9513 \cdot \begin{bmatrix}
+    1\\
+    0
+  \end{bmatrix} - \pi \cdot \begin{bmatrix}
+    0\\
+    1
+  \end{bmatrix}$\\
+  Possible basis vectors with three dimensions:\\
+  $\begin{bmatrix}
+    1\\
+    0\\
+    0
+  \end{bmatrix} \begin{bmatrix}
+    0\\
+    1\\
+    0
+  \end{bmatrix} \begin{bmatrix}
+    0\\
+    0\\
+    1
+  \end{bmatrix}$
+\end{example}
+
+\begin{note}
+  $\ket{→} = \begin{bmatrix}
+    \frac{1}{\sqrt{2}}\\
+    -\frac{1}{\sqrt{2}}
+  \end{bmatrix}$\\
+  $\ket{←} = \begin{bmatrix}
+    \frac{1}{\sqrt{2}}\\
+    \frac{1}{\sqrt{2}}
+  \end{bmatrix}$\\
+  $\ket{↗} = \begin{bmatrix}
+    \frac{1}{2}\\
+    \frac{-\sqrt{3}}{2}
+  \end{bmatrix}$\\
+  $\ket{↙} = \begin{bmatrix}
+    \frac{\sqrt{3}}{2}\\
+    \frac{1}{2}
+  \end{bmatrix}$
+\end{note}
+
+% \subsection{Sub Section 3}
+% \label{sub_sec:sub_section_3}
+
+% \begin{theorem}
+% This is a theorem.
+% \end{theorem}
+% \begin{proof}
+% This is a proof.
+% \end{proof}
+% \begin{example}
+% This is an example.
+% \end{example}
+% \begin{explanation}
+% This is an explanation.
+% \end{explanation}
+% \begin{claim}
+% This is a claim.
+% \end{claim}
+% \begin{corollary}
+% This is a corollary.
+% \end{corollary}
+% \begin{prop}
+% This is a proposition.
+% \end{prop}
+% \begin{lemma}
+% This is a lemma.
+% \end{lemma}
+% \begin{question}
+% This is a question.
+% \end{question}
+% \begin{solution}
+% This is a solution.
+% \end{solution}
+% \begin{exercise}
+% This is an exercise.
+% \end{exercise}
+% \begin{definition}[Definition]
+% This is a definition.
+% \end{definition}
+% \begin{note}
+% This is a note.
+% \end{note}
+
+% subsection sub_section_2 (end)
 
 \newpage

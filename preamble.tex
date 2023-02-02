@@ -3,7 +3,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Gives us multiple colors.
-\usepackage[usenames,dvipsnames,pdftex]{xcolor}
+% \usepackage[usenames,dvipsnames,pdftex]{xcolor}
+\usepackage{xecolor}
+\definergbcolor{OliveGreen}{3C8031}
 % Lets us style link colors.
 \usepackage{hyperref}
 % Lets us import images and graphics.
@@ -27,6 +29,14 @@
 
 \usepackage{tikz-3dplot}
 \usepackage[british]{datetime2}
+\usepackage{mathtools}
+\usepackage[utf8]{inputenc}
+
+\setmainfont{Inter}
+
+\DeclarePairedDelimiter\bra{\langle}{\rvert}
+\DeclarePairedDelimiter\ket{\lvert}{\rangle}
+\DeclarePairedDelimiterX\braket[2]{\langle}{\rangle}{#1 \delimsize\vert #2}
 
 \usetikzlibrary{automata,positioning}
 \tikzset{
@@ -260,7 +270,7 @@
 %%%%%%%%%%%%%%%%%%%%
 
 \usepackage{import}
-\pdfminorversion=7
+% \pdfminorversion 7
 
 % EXAMPLE:
 % 1. \incfig{limit-graph}
