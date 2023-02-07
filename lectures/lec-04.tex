@@ -1,0 +1,216 @@
+\lesson{Tue, 7 February 2023, 2:50pm – 4:10pm}{Week 3, Tuesday}
+
+Qubits are represented by unit vectors.
+
+\begin{definition}
+    A vector is \emph{orthonormal} if it is both a unit vector and orthogonal.
+\end{definition}
+
+\begin{example}
+    The following are the basis vectors for $R^3$:
+    $\begin{bmatrix}
+        1\\
+        0\\
+        0
+    \end{bmatrix}
+    \begin{bmatrix}
+        0\\
+        1\\
+        0
+    \end{bmatrix}
+    \begin{bmatrix}
+        0\\
+        0\\
+        1
+    \end{bmatrix}$
+
+    This means that any vector can be written as a linear combination of these basis vectors.
+
+    If we were talking about spin, for example, we could use $R^2$, with the following basis vectors:\\
+    $\ket{↑} = \begin{bmatrix}
+        1\\
+        0
+    \end{bmatrix}\\
+    \ket{↓} = \begin{bmatrix}
+        0\\
+        1
+    \end{bmatrix}\\
+    \ket{→} = \begin{bmatrix}
+        \frac{1}{\sqrt{2}}\\
+        \frac{1}{\sqrt{2}}
+    \end{bmatrix}\\
+    \ket{←} = \begin{bmatrix}
+        \frac{1}{\sqrt{2}}\\
+        \frac{1}{\sqrt{2}}
+    \end{bmatrix}$
+
+    Meaning,\\
+    $
+    \ket{↗} = \ket{↑} \cdot \ket{→} = \begin{bmatrix}
+        \frac{1}{2}\\
+        \frac{-\sqrt{3}}{2}
+    \end{bmatrix}\\
+    \ket{↙} = \ket{↓} \cdot \ket{←} \begin{bmatrix}
+        \frac{\sqrt{3}}{2}\\
+        \frac{1}{2}
+    \end{bmatrix}
+    $.
+\end{example}
+
+\begin{definition}
+    A \emph{matrix is a rectangular array of numbers.}\\
+    The `gates' that are the primary components of quantum computing algorithms correspond to matricies.
+\end{definition}
+
+\begin{definition}
+    To \emph{transpose} a matrix means to `rotate' it so that its rows become columns, and its columns become rows.
+\end{definition}
+
+\begin{example}
+    $M = \begin{bmatrix}
+        1 & 4\\
+        2 & 5\\
+        3 & 6
+    \end{bmatrix}$\\
+    $M$ has $3$ rows by $2$ columns.
+
+    $M^T = \begin{bmatrix}
+        1 & 2 & 3\\
+        4 & 5 & 6
+    \end{bmatrix}$\\
+    $M^T$ has $2$ rows by $3$ columns.
+\end{example}
+
+If multiplying two matricies, one with dimensions $n \times m$ and the other with dimensions $m \times p$, then the result will have dimensions $n \times p$ (ie, the resultant matrix's dimensions will be number of the first matrix's rows, by the number of the second matrix's columns).
+
+\begin{example}
+    $
+    \begin{bmatrix}
+        1 & 4\\
+        2 & 5\\
+        3 & 6
+    \end{bmatrix}
+    \cdot
+    \begin{bmatrix}
+        -2 & 1 & 3\\
+        4 & 7 & -2
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        14 & 29 & -5\\
+        16 & 37 & -4\\
+        18 & 45 & -3
+    \end{bmatrix}
+    $
+\end{example}
+
+\begin{definition}
+    An \emph{identity matrix} is a matrix when, multiplied with another matrix, simply yields that other matrix.
+\end{definition}
+
+\begin{example}
+    $
+    \begin{bmatrix}
+        14 & 29 & -5\\
+        16 & 37 & -4\\
+        18 & 45 & -3
+    \end{bmatrix}
+    \cdot
+    \begin{bmatrix}
+        1 & 0 & 0\\
+        0 & 1 & 0\\
+        0 & 0 & 1
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        14 & 29 & -5\\
+        16 & 37 & -4\\
+        18 & 45 & -3
+    \end{bmatrix}
+    $
+\end{example}
+
+\begin{note}
+    If a matrix, $H$, were multiplied by its transpose (ie, $H \cdot H^T$), and if the multiplication were to yield an identity matrix, $I$, then it is orthogonal. In other words, if $H \cdot H^T = I$, then $H$ is orthogonal. When dealing with complex numbers, this is called a \emph{unitary matrix} instead, rather than an `orthogonal matrix'.
+\end{note}
+
+\begin{definition}
+    A \emph{tensor product} (represented as $A \otimes B$) can be found by, for each value in the left-hand side, multiplying said value with all of the values on the right-hand side. This operation can be referred to as calculating the \emph{Kronecker product} or \emph{matrix direct product}, when dealing specifically with matricies as opposed to other tensors.\\
+    A \emph{tensor} is a generalisation of matricies; where a matrix has two dimensions (rows and columns), a tensor can have any number of dimensions.
+\end{definition}
+
+\begin{example}
+    $
+    \begin{bmatrix}
+        2\\
+        3
+    \end{bmatrix}
+    \otimes
+    \begin{bmatrix}
+        -1\\
+        4\\
+        7
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        -2\\
+        8\\
+        14\\
+        -3\\
+        12\\
+        21
+    \end{bmatrix}
+    $
+\end{example}
+
+The state of a quantum system corresponds to a vector.
+The state of a quantum system is a tensor product of qubits.
+A vector is separable if it can be written as a tensor product of two other vecotrs.
+A vector is entangled if it \emph{cannot} be written as the tensor product of two other vectors.
+
+% \subsection{Sub Section 3}
+% \label{sub_sec:sub_section_3}
+
+% \begin{theorem}
+% This is a theorem.
+% \end{theorem}
+% \begin{proof}
+% This is a proof.
+% \end{proof}
+% \begin{example}
+% This is an example.
+% \end{example}
+% \begin{explanation}
+% This is an explanation.
+% \end{explanation}
+% \begin{claim}
+% This is a claim.
+% \end{claim}
+% \begin{corollary}
+% This is a corollary.
+% \end{corollary}
+% \begin{prop}
+% This is a proposition.
+% \end{prop}
+% \begin{lemma}
+% This is a lemma.
+% \end{lemma}
+% \begin{question}
+% This is a question.
+% \end{question}
+% \begin{solution}
+% This is a solution.
+% \end{solution}
+% \begin{exercise}
+% This is an exercise.
+% \end{exercise}
+% \begin{definition}[Definition]
+% This is a definition.
+% \end{definition}
+% \begin{note}
+% This is a note.
+% \end{note}
+
+% subsection sub_section_2 (end)
+
+\newpage
