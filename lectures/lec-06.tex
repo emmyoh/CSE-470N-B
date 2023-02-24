@@ -1,0 +1,104 @@
+\lesson{Tue, 14 February 2023, 2:50pm – 4:10pm}{Week 4, Tuesday}
+
+\begin{definition}
+    A \emph{qubit} is a unit vector (`ket') in $C^2$.\
+    When we measure a qubit, we are, in effect, choosing a direction for measurement. Which actually means that we are choosing an orthonormal basis vector.
+\end{definition}
+
+\begin{note}
+    To represent classical bits, we can do so with the equation, $\ket{v} = x \cdot \ket{b_1} + y \cdot \ket{b_2}$ where $x^2 + y^2 = 1$.\\
+    We will always write it so that $\ket{b_1} = 0$ and that $\ket{b_2} = 1$, not the other way around; the order in which we write our basis vectors conveys that the first will represent a $0$, and that the second will represent a $1$.
+\end{note}
+
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[shorten >=1pt,node distance=3.5cm,on grid,auto]
+        \node[draw,rectangle] (a)   {Filter \#1 ($0^{\degree}$)};
+        \node[] (a_left) [left=of a] {$\ket{v} = \frac{1}{\sqrt{2}}\cdot\begin{bmatrix}0\\1\end{bmatrix} + \frac{1}{\sqrt{2}}\cdot\begin{bmatrix}1\\0\end{bmatrix}$};
+        \node[below of=a] (a_below) {Blocked $\begin{bmatrix}0\\1\end{bmatrix}$};
+
+        \node[draw,rectangle,right of=a] (b)   {Filter \#2 ($45^{\degree})$};
+        \node[below of=b] (b_below) {$(\begin{bmatrix}\frac{1}{\sqrt{2}}\\-\frac{1}{\sqrt{2}}\end{bmatrix} \begin{bmatrix}\frac{1}{\sqrt{2}}\\\frac{1}{\sqrt{2}}\end{bmatrix})$};
+        
+        \node[draw,rectangle,right of=b] (c)   {Filter \#3 ($90^{\degree})$};
+        \coordinate[right of=c] (c_right);
+        \path[-latex,shorten >= 2pt, shorten <= 2pt]
+            (a_left)
+                edge node {} (a)
+            (a)
+                edge node {} (a_below)
+                edge node {Through $\begin{bmatrix}1\\0\end{bmatrix}$} (b)           
+            (b)
+                edge node {} (b_below)
+                edge node {$\begin{bmatrix}\frac{1}{\sqrt{2}}\\-\frac{1}{\sqrt{2}}\end{bmatrix}$} (c)
+            (c)
+                edge node {$\begin{bmatrix}0\\1\end{bmatrix}$} (c_right);
+    \end{tikzpicture}
+    \caption{Three repeated filters, blocking photons. The probabilities became a certain outcome.}\label{fig:experiment4}
+\end{figure}
+
+\newpage
+
+\begin{definition}
+    When two waves collide and destroy one another, that is \emph{destructive interference}. When the two waves combine, that is \emph{constructive interference}.
+\end{definition}
+
+\begin{example}
+    Find $a$ and $b$ when $\ket{v} = a \cdot \begin{bmatrix}
+        1\\
+        0
+    \end{bmatrix} + b \cdot \begin{bmatrix}
+        0\\
+        1
+    \end{bmatrix}$, where $\ket{v}$ is the interaction between $\ket{←}$ and $\ket{→}$.\\
+    $\ket{v} = \frac{1}{\sqrt{2}} \cdot \ket{←} + \frac{1}{\sqrt{2}} \cdot \ket{→} = \frac{1}{\sqrt{2}} \cdot \begin{bmatrix}\frac{1}{\sqrt{2}}\\\frac{1}{\sqrt{2}}\end{bmatrix} + \frac{1}{\sqrt{2}} \cdot \begin{bmatrix}\frac{1}{\sqrt{2}}\\-\frac{1}{\sqrt{2}}\end{bmatrix} = \begin{bmatrix}\frac{1}{2}\\\frac{1}{2}\end{bmatrix} + \begin{bmatrix}\frac{1}{2}\\-\frac{1}{2}\end{bmatrix} = \begin{bmatrix}1\\0\end{bmatrix}$.\\
+    Therefore, $a = 1$, $b = 0$. $\ket{←}$ and $\ket{→}$, both with their own probabilities, constructively interfered to achieve one certain outcome.
+\end{example}
+
+
+% \subsection{Sub Section 3}
+% \label{sub_sec:sub_section_3}
+
+% \begin{theorem}
+% This is a theorem.
+% \end{theorem}
+% \begin{proof}
+% This is a proof.
+% \end{proof}
+% \begin{example}
+% This is an example.
+% \end{example}
+% \begin{explanation}
+% This is an explanation.
+% \end{explanation}
+% \begin{claim}
+% This is a claim.
+% \end{claim}
+% \begin{corollary}
+% This is a corollary.
+% \end{corollary}
+% \begin{prop}
+% This is a proposition.
+% \end{prop}
+% \begin{lemma}
+% This is a lemma.
+% \end{lemma}
+% \begin{question}
+% This is a question.
+% \end{question}
+% \begin{solution}
+% This is a solution.
+% \end{solution}
+% \begin{exercise}
+% This is an exercise.
+% \end{exercise}
+% \begin{definition}[Definition]
+% This is a definition.
+% \end{definition}
+% \begin{note}
+% This is a note.
+% \end{note}
+
+% subsection sub_section_2 (end)
+
+\newpage
