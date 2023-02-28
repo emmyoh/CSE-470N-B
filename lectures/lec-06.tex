@@ -12,6 +12,7 @@
 
 \begin{figure}[h]
     \centering
+    \begin{adjustbox}{width=\textwidth}
     \begin{tikzpicture}[shorten >=1pt,node distance=3.5cm,on grid,auto]
         \node[draw,rectangle] (a)   {Filter \#1 ($0^{\degree}$)};
         \node[] (a_left) [left=of a] {$\ket{v} = \frac{1}{\sqrt{2}}\cdot\begin{bmatrix}0\\1\end{bmatrix} + \frac{1}{\sqrt{2}}\cdot\begin{bmatrix}1\\0\end{bmatrix}$};
@@ -34,6 +35,7 @@
             (c)
                 edge node {$\begin{bmatrix}0\\1\end{bmatrix}$} (c_right);
     \end{tikzpicture}
+    \end{adjustbox}
     \caption{Three repeated filters, blocking photons. The probabilities became a certain outcome.}\label{fig:experiment4}
 \end{figure}
 
