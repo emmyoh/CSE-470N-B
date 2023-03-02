@@ -1,0 +1,133 @@
+\lesson{Thu, 2 March 2023, 2:50pm -- 4:10pm}{Week 6, Thursday}
+
+\begin{definition}
+    The \emph{Copenhagen interpretation}, put simply, is that the wave function is a description of the state of the universe, and that the universe is in a superposition of states; in other words, everything is existing in all possible states at once. It's a broad term describing the interpretation of quantum mechanics shared by Niels Bohr and Werner Heisenberg---the term comes from the work that both performed together at the University of Copenhagen.
+\end{definition}
+
+\begin{definition}
+    The \emph{EPR Paradox} is a thought experiment that was first proposed by Albert Einstein, Boris Podolsky, and Nathan Rosen in 1935. The paper describing the paradox argued that quantum mechanics was `incomplete', and that it was impossible to reconcile the theory with special relativity. The paradox is based on the idea that two particles, $A$ and $B$, are entangled, and that the measurement of the spin of particle $A$ will instantaneously affect the spin of particle $B$. This is a violation of the principle of locality, which states that the speed of light is the fastest possible speed of information transfer.
+\end{definition}
+
+\begin{definition}
+    The \emph{Bell Inequality} is a mathematical inequality that was first proposed by John Stewart Bell in 1964. The inequality is a response to the EPR Paradox, and it describes an experiment that, if performed, would show whether or not the Copenhagen interpretation is correct or not.
+    
+    % $\frac{1}{\sqrt{2}} \ket{00} + \frac{1}{\sqrt{2}} \ket{11} = \frac{1}{\sqrt{2}}(\ket{0} \otimes \ket{0}) + \frac{1}{\sqrt{2}}(\ket{1} \otimes \ket{1}) = \frac{1}{\sqrt{2}} (\begin{bmatrix}
+    %     1\\
+    %     0
+    % \end{bmatrix} \otimes \begin{bmatrix}
+    %     1\\
+    %     0
+    % \end{bmatrix}) + \frac{1}{\sqrt{2}}(\begin{bmatrix}
+    %     0\\
+    %     1
+    % \end{bmatrix} \otimes \begin{bmatrix}
+    %     0\\
+    %     1
+    % \end{bmatrix}) = \frac{1}{\sqrt{2}} \begin{bmatrix}
+    %     1\\
+    %     0\\
+    %     0\\
+    %     0
+    % \end{bmatrix} + \frac{1}{\sqrt{2}} \begin{bmatrix}
+    %     0\\
+    %     0\\
+    %     0\\
+    %     1
+    % \end{bmatrix} = \frac{1}{\sqrt{2}} \begin{bmatrix}
+    %     1\\
+    %     0\\
+    %     0\\
+    %     1
+    % \end{bmatrix} = \begin{bmatrix}
+    %     \frac{1}{\sqrt{2}}\\
+    %     0\\
+    %     0\\
+    %     \frac{1}{\sqrt{2}}
+    % \end{bmatrix}$.\\
+
+    Bell suggests performing the following experiment:
+    \begin{enumerate}
+        \item Create a stream of pairs of entangled particles.
+        \item Measure and record the spin of one particle in each pair, using one randomly chosen direction out of three, $0^{\degree}$, $120^{\degree}$, $240^{\degree}$ ($\ket{\uparrow}$, $\ket{\downarrow}$, $\ket{\searrow}$, $\ket{\nwarrow}$, $\ket{\swarrow}$, $\ket{\nearrow}$)---the answer will be either $0$ or $1$.
+        \item Measure the spin of the other particle in each pair, randomly choosing the direction again for the remaining particles.
+        \item When all the pairs are measured, there will be two strings of $0$s and $1$s, one for each particle in each pair. If the pairs are the same in both strings (ie, if they `agree'), note that the outcome was $A$ in a new, third string---and if they are different (ie, if they `disagree'), note that the outcome was $D$.
+        \item In the long run, the pairs will be the same (ie, the outcome will be $A$) about $\frac{1}{2}$ of the time, and different (ie, the outcome will be $D$) about $\frac{1}{2}$ of the time. Knowing that $P(A) = \frac{1}{2}$ and that $P(D) = \frac{1}{2}$, we know that the third, final string will be half $A$s and half $D$s.
+    \end{enumerate}
+
+    The sample space of this experiment would resemble the following:\\
+
+    \begin{adjustbox}{width=\textwidth}
+        \begin{tabular}{lll}
+        $0^{\degree}$ & $120^{\degree}$ & $240^{\degree}$ \\
+        $0$ & $0$ & $0$ \\
+        $0$ & $0$ & $1$ \\
+        $0$ & $1$ & $0$ \\
+        $0$ & $1$ & $1$ \\
+        $1$ & $0$ & $0$ \\
+        $1$ & $0$ & $1$ \\
+        $1$ & $1$ & $0$ \\
+        $1$ & $1$ & $1$ \\
+        \end{tabular}
+        \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|}
+        \hline ($0^{\degree}$, $0^{\degree}$) & ($0^{\degree}$, $120^{\degree}$) & ($0^{\degree}$, $240^{\degree}$) & ($120^{\degree}$, $0^{\degree}$) & ($120^{\degree}$, $120^{\degree}$) & ($120^{\degree}$, $240^{\degree}$) & ($240^{\degree}$, $0^{\degree}$) & ($240^{\degree}$, $120^{\degree}$) & ($240^{\degree}$, $240^{\degree}$) & Number of $A$s \\
+        \hline $A$ & $A$ & $A$ & $A$ & $A$ & $A$ & $A$ & $A$ & $A$ & $9$ \\
+        \hline $A$ & $A$ & $D$ & $A$ & $A$ & $D$ & $D$ & $D$ & $A$ & $5$ \\
+        \hline $A$ & $D$ & $A$ & $D$ & $A$ & $D$ & $A$ & $D$ & $A$ & $5$ \\
+        \hline $A$ & $D$ & $D$ & $D$ & $A$ & $A$ & $D$ & $A$ & $A$ & $5$ \\
+        \hline $A$ & $D$ & $D$ & $D$ & $A$ & $A$ & $D$ & $A$ & $A$ & $5$ \\
+        \hline $A$ & $D$ & $A$ & $D$ & $A$ & $D$ & $A$ & $D$ & $A$ & $5$ \\
+        \hline $A$ & $A$ & $D$ & $A$ & $A$ & $D$ & $D$ & $D$ & $A$ & $5$ \\
+        \hline $A$ & $A$ & $A$ & $A$ & $A$ & $A$ & $A$ & $A$ & $A$ & $9$ \\
+        \hline
+        \end{tabular}
+    \end{adjustbox}\\
+
+    The sample space demonstrates, however, that the smallest possible proportion of $A$s is $\frac{5}{9}$. When performing the experiment in reality, the proportion of $A$s and $D$s will be closer to $\frac{1}{2}$ than $\frac{5}{9}$, validating the Copenhagen interpretation.
+\end{definition}
+
+% \subsection{Sub Section 3}
+% \label{sub_sec:sub_section_3}
+
+% \begin{theorem}
+% This is a theorem.
+% \end{theorem}
+% \begin{proof}
+% This is a proof.
+% \end{proof}
+% \begin{example}
+% This is an example.
+% \end{example}
+% \begin{explanation}
+% This is an explanation.
+% \end{explanation}
+% \begin{claim}
+% This is a claim.
+% \end{claim}
+% \begin{corollary}
+% This is a corollary.
+% \end{corollary}
+% \begin{prop}
+% This is a proposition.
+% \end{prop}
+% \begin{lemma}
+% This is a lemma.
+% \end{lemma}
+% \begin{question}
+% This is a question.
+% \end{question}
+% \begin{solution}
+% This is a solution.
+% \end{solution}
+% \begin{exercise}
+% This is an exercise.
+% \end{exercise}
+% \begin{definition}[Definition]
+% This is a definition.
+% \end{definition}
+% \begin{note}
+% This is a note.
+% \end{note}
+
+% subsection sub_section_2 (end)
+
+\newpage
