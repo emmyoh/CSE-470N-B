@@ -1,0 +1,277 @@
+\lesson{Tue, 14 March 2023, 2:50pm -- 4:10pm}{Week 8, Tuesday}
+
+\begin{definition}
+    The \emph{no cloning theorem} states that it is not possible to \underline{copy} an arbitrary quantum state without destroying the original. In other words, it is possible to `cut and paste', but it is not possible to `copy and paste'. To develop an intuitive understanding of why this is, suppose we have a qubit in a superposition, $a \ket{0} + b \ket{1}$, and we wished to copy it---if we wished to measure the qubit to copy it, the superposition collapses.
+\end{definition}
+
+Suppose we had a gate to copy a qubit, $G$.
+If we were to supply it an input to copy and a qubit to copy the first qubit onto, we would observe the following outputs:\\
+$G(\ket{00}) = \ket{00}$\\
+$G(\ket{10}) = \ket{11}$\\
+$G(\frac{1}{\sqrt{2}} \ket{0} + \frac{1}{\sqrt{2}} \ket{1} \otimes \ket{0}) = (\frac{1}{\sqrt{2}} \ket{0} + \frac{1}{\sqrt{2}} \ket{1}) \otimes (\frac{1}{\sqrt{2}} \ket{0} + \frac{1}{\sqrt{2}} \ket{1})$\\
+$G(\frac{1}{\sqrt{2}} \ket{00} + \frac{1}{\sqrt{2}} \ket{10}) = \frac{1}{\sqrt{2}} \ket{00} + \frac{1}{\sqrt{2}} \ket{01} + \frac{1}{\sqrt{2}} \ket{10} + \frac{1}{\sqrt{2}} \ket{11}$\\
+$G(\frac{1}{\sqrt{2}} \ket{00} + \frac{1}{\sqrt{2}} \ket{10}) = G(\frac{1}{\sqrt{2}}\ket{00}) + G(\frac{1}{\sqrt{2}}\ket{10}) = \frac{1}{\sqrt{2}} G(\ket{00}) + \frac{1}{\sqrt{2}} G(\ket{10}) = \frac{1}{\sqrt{2}} \ket{00} + \frac{1}{\sqrt{2}} \ket{11}$\\
+As you can see, the last two outputs are not the same, despite the same input; this is a contradiction. The contradiction demonstrates that such a gate cannot exist.
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[shorten >=1pt,node distance=3.5cm,on grid,auto]
+        \node[] (start_top) {$\ket{0}$};
+        \node[right of=start_top,draw] (h) {$H$};
+        \node[right of=h,circle,draw=black,fill=black] (end_top) {};
+        \coordinate[right of=end_top] (beyond_top);
+        \node[below of=start_top] (start_bottom) {$\ket{0}$};
+        \node[below of=end_top] (end_bottom) {$\oplus$};
+        \coordinate[right of=end_bottom] (beyond_bottom);
+        
+        \path[-]
+            (start_top)
+                edge node {\textcolor{DarkGreen}{$\ket{00} = \ket{0} \otimes \ket{0}$}} (h)
+            (h)
+                edge node {$\frac{1}{\sqrt{2}}\ket{0} + \frac{1}{\sqrt{2}}\ket{1}$} (end_top)
+                edge node[below] {\textcolor{DarkGreen}{\begin{adjustbox}{width=3cm}$(\frac{1}{\sqrt{2}}\ket{0} + \frac{1}{\sqrt{2}}\ket{1}) \otimes \ket{0} = \frac{1}{\sqrt{2}} \ket{00} + \frac{1}{\sqrt{2}} \ket{10} = \frac{1}{\sqrt{2}} \begin{bmatrix}
+                    1\\
+                    0\\
+                    1\\
+                    0
+                \end{bmatrix}$\end{adjustbox}}} (end_top)
+            (end_top)
+                edge node {} (end_bottom)
+                edge node {\begin{adjustbox}{width=3cm}$\frac{1}{\sqrt{2}}\begin{bmatrix}
+                    1\\
+                    0\\
+                    0\\
+                    0
+                \end{bmatrix} + \frac{1}{\sqrt{2}}\begin{bmatrix}
+                    0\\
+                    0\\
+                    1\\
+                    0
+                \end{bmatrix} = \frac{1}{\sqrt{2}}\begin{bmatrix}
+                    1\\
+                    0\\
+                    1\\
+                    0
+                \end{bmatrix}$\end{adjustbox}} (beyond_top)
+            (start_bottom)
+                edge node {} (end_bottom)
+            (end_bottom)
+                edge node {\textcolor{DarkGreen}{\begin{adjustbox}{width=3.5cm}$\frac{1}{\sqrt{2}}\begin{bmatrix}
+                    1\\
+                    0\\
+                    0\\
+                    1
+                \end{bmatrix} = \frac{1}{\sqrt{2}}\ket{00} + \frac{1}{\sqrt{2}}\ket{11} = \frac{1}{\sqrt{2}}\begin{bmatrix}
+                    1\\
+                    0\\
+                    0\\
+                    0
+                \end{bmatrix} + \frac{1}{\sqrt{2}}\begin{bmatrix}
+                    0\\
+                    0\\
+                    0\\
+                    1
+                \end{bmatrix}$\end{adjustbox}}} (beyond_bottom);
+    \end{tikzpicture}
+    \caption{An example of Bell's Circuit, with an input of $\ket{00}$. When you have a circuit of unentangled qubits, qubits on parallel lines are represented by a tensor product.}\label{fig:lec11fig1}
+\end{figure}
+
+`Sequential gates are represented by the product of matrices'.
+
+The `C' in `C-NOT' stands for `controlled'---it is a `controlled operation'.\\
+The `NOT' gate:\\
+$\begin{bmatrix}
+    0 & 1\\
+    1 & 0
+\end{bmatrix}$.\\
+\begin{claim}
+    The `C-NOT' gate acts analagously to an \verb+if+ statement. If the first qubit is $1$, then apply the `NOT' gate to the second qubit. In other words, if the $1^{\underline{\text{st}}}$ qubit is $0$, the second qubit remains the same and the second qubit is flipped.
+\end{claim}
+
+\begin{example}
+    Suppose we had a hypothetical gate which looked like:\\
+    $\begin{bmatrix}
+        a & b\\
+        c & d
+    \end{bmatrix}$. Let's say we wished to create a `controlled' version of this gate, called $A$:\\
+    $A = \begin{bmatrix}
+        1 & 0 & 0 & 0\\
+        0 & 1 & 0 & 0\\
+        0 & 0 & a & b\\
+        0 & 0 & c & d
+    \end{bmatrix}$.\\
+    $A(\ket{00}) = \ket{00}$, $A(\ket{01}) = \ket{01}$, $A(\ket{10}) = \ket{1} \otimes \begin{bmatrix}
+        a\\
+        c
+    \end{bmatrix}$, $A(\ket{11}) = \ket{1} \otimes \begin{bmatrix}
+        b\\
+        d
+    \end{bmatrix}$.\\
+\end{example}
+
+The `Taffoli' gate has two controls bits and one output:
+\[ \begin{bmatrix}
+    1 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+    0 & 1 & 0 & 0 & 0 & 0 & 0 & 0\\
+    0 & 0 & 1 & 0 & 0 & 0 & 0 & 0\\
+    0 & 0 & 0 & 1 & 0 & 0 & 0 & 0\\
+    0 & 0 & 0 & 0 & 1 & 0 & 0 & 0\\
+    0 & 0 & 0 & 0 & 0 & 1 & 0 & 0\\
+    0 & 0 & 0 & 0 & 0 & 0 & 0 & 1\\
+    0 & 0 & 0 & 0 & 0 & 0 & 1 & 0
+\end{bmatrix} \]
+We can think of this gate as the `C-C-NOT' gate (a `controlled'-`controlled'-`NOT' gate). It is reversible, and universal in the context of classical computing (just like `NAND').\\
+
+\pagebreak
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[shorten >=1pt,node distance=3.5cm,on grid,auto]
+        \node[] (start_top) {$\ket{x}$};
+        \node[right of=start_top,circle,draw=black,fill=black] (end_top) {};
+        \coordinate[right of=end_top] (beyond_top);
+
+        \node[below of=start_top] (start_middle) {$\ket{y}$};
+        \node[below of=end_top,circle,draw=black,fill=black] (end_middle) {};
+        \coordinate[right of=end_middle] (beyond_middle);
+        
+        \node[below of=start_middle] (start_bottom) {$\ket{z}$};
+        \node[below of=end_middle] (end_bottom) {$\oplus$};
+        \coordinate[right of=end_bottom] (beyond_bottom);
+        
+        \path[-]
+            (start_top)
+                edge node {} (end_top)
+            (end_top)
+                edge node {} (end_bottom)
+                edge node {$\ket{x}$} (beyond_top)
+            (start_middle)
+                edge node {} (end_middle)
+            (end_middle)
+                edge node {$\ket{y}$} (beyond_middle)
+            (start_bottom)
+                edge node {} (end_bottom)
+            (end_bottom)
+                edge node {$\ket{z \oplus (x \wedge y)}$} (beyond_bottom);
+    \end{tikzpicture}
+    \caption{A circuit demonstrating the Taffoli gate.}\label{fig:lec11fig2}
+\end{figure}
+
+\begin{note}
+    There is a relationship between the two sides of the exclusive `or' operation ($\oplus$):\\
+    $0 \oplus 0 = 0$, $0 \oplus 1 = 1$, $0 \oplus x = x$.\\
+    $1 \oplus 0 = 1$, $1 \oplus 1 = 0$, $1 \oplus x = \overline{x}$.
+\end{note}
+
+\begin{question}
+    Are there any quantum gates that are universal?
+\end{question}
+
+\hfill
+
+\begin{solution}
+    No.
+\end{solution}
+
+\begin{question}
+    How many 1-qubit quantum gates are there?
+\end{question}
+
+\hfill
+
+\begin{solution}
+    Infinity.
+\end{solution}
+
+The `Fredkin' gate has one control bit, two outputs:
+\[ \begin{bmatrix}
+    1 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+    0 & 1 & 0 & 0 & 0 & 0 & 0 & 0\\
+    0 & 0 & 1 & 0 & 0 & 0 & 0 & 0\\
+    0 & 0 & 0 & 1 & 0 & 0 & 0 & 0\\
+    0 & 0 & 0 & 0 & 1 & 0 & 0 & 0\\
+    0 & 0 & 0 & 0 & 0 & 0 & 1 & 0\\
+    0 & 0 & 0 & 0 & 0 & 1 & 0 & 0\\
+    0 & 0 & 0 & 0 & 0 & 0 & 0 & 1
+\end{bmatrix} \]
+If $\ket{x} = 0$, $\ket{y}$ and $\ket{z}$ are unchanged. If $\ket{x} = \ket{1}$, $\ket{y^{\prime}}$ = $\ket{z}$, $\ket{z^{\prime}} = \ket{y}$.
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[shorten >=1pt,node distance=3.5cm,on grid,auto]
+        \node[] (start_top) {$\ket{x}$};
+        \node[right of=start_top,circle,draw=black,fill=black] (end_top) {};
+        \coordinate[right of=end_top] (beyond_top);
+
+        \node[below of=start_top] (start_middle) {$\ket{y}$};
+        \node[below of=end_top,cross out,draw=black] (end_middle) {};
+        \coordinate[right of=end_middle] (beyond_middle);
+        
+        \node[below of=start_middle] (start_bottom) {$\ket{z}$};
+        \node[below of=end_middle,cross out,draw=black] (end_bottom) {};
+        \coordinate[right of=end_bottom] (beyond_bottom);
+        
+        \path[-]
+            (start_top)
+                edge node {} (end_top)
+            (end_top)
+                edge node {} (end_middle)
+                edge node {$\ket{x}$} (beyond_top)
+            (start_middle)
+                edge node {} (end_middle)
+            (end_middle)
+                edge node {} (end_bottom)
+                edge node {$\ket{y^{\prime}}$} (beyond_middle)
+            (start_bottom)
+                edge node {} (end_bottom)
+            (end_bottom)
+                edge node {$\ket{z^{\prime}}$} (beyond_bottom);
+    \end{tikzpicture}
+    \caption{A circuit demonstrating the Fredkin gate.}\label{fig:lec11fig3}
+\end{figure}
+
+% \subsection{Sub Section 3}
+% \label{sub_sec:sub_section_3}
+
+% \begin{theorem}
+% This is a theorem.
+% \end{theorem}
+% \begin{proof}
+% This is a proof.
+% \end{proof}
+% \begin{example}
+% This is an example.
+% \end{example}
+% \begin{explanation}
+% This is an explanation.
+% \end{explanation}
+% \begin{claim}
+% This is a claim.
+% \end{claim}
+% \begin{corollary}
+% This is a corollary.
+% \end{corollary}
+% \begin{prop}
+% This is a proposition.
+% \end{prop}
+% \begin{lemma}
+% This is a lemma.
+% \end{lemma}
+% \begin{question}
+% This is a question.
+% \end{question}
+% \begin{solution}
+% This is a solution.
+% \end{solution}
+% \begin{exercise}
+% This is an exercise.
+% \end{exercise}
+% \begin{definition}[Definition]
+% This is a definition.
+% \end{definition}
+% \begin{note}
+% This is a note.
+% \end{note}
+
+% subsection sub_section_2 (end)
+
+\newpage

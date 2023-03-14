@@ -3,7 +3,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Gives us multiple colors.
-% \usepackage[usenames,dvipsnames,pdftex]{xcolor}
+\usepackage[usenames,dvipsnames,svgnames,x11names]{xcolor}
 \usepackage{xecolor}
 \definergbcolor{OliveGreen}{3C8031}
 % Lets us style link colors.
@@ -47,7 +47,7 @@
 \DeclarePairedDelimiter\ket{\lvert}{\rangle}
 \DeclarePairedDelimiterX\braket[2]{\langle}{\rangle}{#1 \delimsize\vert #2}
 
-\usetikzlibrary{automata,positioning}
+\usetikzlibrary{automata,positioning,shapes.misc}
 \tikzset{
   vlak/.style={fill=lightgray!80,draw=none,opacity=1},
   obj/.style={fill=lightgray,draw=none},

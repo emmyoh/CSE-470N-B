@@ -34,7 +34,7 @@ A quick trick to determine if a vector in $C^4$ is entangled is to check if the 
 
 \pagebreak
 
-\begin{example}
+\begin{exercise}
     \textbf{Separable (not entangled; unentangled)}
 
     $(a\ket{0} + b\ket{1}) \otimes (c\ket{0} + d\ket{1}) = ac\ket{0 0} + ad\ket{0 1} + bc\ket{1 0} + bd\ket{1 1}$
@@ -49,9 +49,9 @@ A quick trick to determine if a vector in $C^4$ is entangled is to check if the 
         \item  $ac\ket{00} + ad\ket{01}$. This is an invalid quantum state; $(ac)^2 + (ad)^2 \neq 1$. We know this because we know that $(ac)^2 + (ad)^2 + (bc)^2 + (bd)^2 = 1$. We can normalise using the length, $\sqrt{(ac)^2 + (ad)^2} = \sqrt{a^2 c^2 + a^2 d^2} = \sqrt{a^2(c^2 + d^2)} = a$. $\frac{ac\ket{00}}{a} + \frac{ad\ket{01}}{a} = c\ket{00} + d\ket{01}$. This is a valid quantum state.
         \item $(c)^2 = c^2$. This is the same as the probability that the second qubit is $\ket{0}$ when we don't measure the first qubit. This means that the first qubit and the second qubit are independent. They are \emph{not} entangled.
     \end{enumerate}
-\end{example}
+\end{exercise}
 
-\begin{example}
+\begin{exercise}
     \textbf{Entangled}
 
     $a\ket{00} + b\ket{01} + c\ket{10} + d\ket{11}$\\
@@ -66,7 +66,7 @@ A quick trick to determine if a vector in $C^4$ is entangled is to check if the 
         \item The system state becomes $a\ket{00} + b\ket{01}$. This is not a valid quantum state, because $(a)^2 + (b)^2 + (c)^2 + (d)^2 = 1$. We can normalise using the length, $\sqrt{a^2 + b^2}$. $\frac{a\ket{00}}{\sqrt{a^2 + b^2}} + \frac{b\ket{01}}{\sqrt{a^2 + b^2}}$. This is a valid quantum state.
         \item $\frac{a^2}{a^2 + b^2}$. This does not equal $a^2 + c^2$ (the probability that the second qubit is $\ket{0}$ when we don't measure the first qubit). This means that the first qubit and the second qubit are not independent. They are entangled; they both changed.
     \end{enumerate}
-\end{example}
+\end{exercise}
 
 Hadamard gate: $\mathrm{H} = \frac{1}{\sqrt{2}}\begin{bmatrix}
     1 & 1\\

@@ -1,0 +1,312 @@
+\lesson{Thu, 9 March 2023, 2:50pm -- 4:10pm}{Week 7, Thursday}
+
+All quantum operations (except measurements) are reversible and are represented by unitary matrices.
+
+\begin{definition}
+    An operation is \emph{reversible} if, from the output, we can determine the inputs.
+\end{definition}
+
+\begin{definition}
+    A \emph{unitary matrix} is a matrix whose inverse is its \emph{conjugate} transpose. An \emph{orthogonal matrix} is a matrix whose inverse is its transpose. See \textbf{Definition 4.12} and \textbf{Definition 4.13} from \textbf{Lecture 4}.
+\end{definition}
+
+The behaviour of the CNOT gate can be represented with the following two tables:\\
+\begin{tabular}{l|l}
+    Input & Output\\
+    \hline
+    $x \ y$ & $x \ x \oplus y$\\
+    $0 \ 0$ & $0 \ 0$\\
+    $0 \ 1$ & $0 \ 1$\\
+    $1 \ 0$ & $1 \ 1$\\
+    $1 \ 1$ & $1 \ 0$
+\end{tabular}
+\begin{tabular}{l|l}
+    Input & Output\\
+    \hline
+    $\ket{00}$ & $\ket{00}$\\
+    $\ket{01}$ & $\ket{01}$\\
+    $\ket{10}$ & $\ket{11}$\\
+    $\ket{11}$ & $\ket{10}$
+\end{tabular}\\
+
+CNOT:\\
+$\begin{bmatrix}
+    1 & 0 & 0 & 0\\
+    0 & 1 & 0 & 0\\
+    0 & 0 & 0 & 1\\
+    0 & 0 & 1 & 0
+\end{bmatrix} \begin{bmatrix}
+    a\\
+    b\\
+    c\\
+    d
+\end{bmatrix} = \begin{bmatrix}
+    a\\
+    b\\
+    d\\
+    c
+\end{bmatrix}$
+
+\begin{example}
+    $\mathrm{CNOT}(r\ket{00} + s\ket{01} + t\ket{10} + u\ket{11}) = r\ket{00} + s\ket{01} + u\ket{10} + t\ket{11}$. The probabilitiy amplitudes for $\ket{10}$ and $\ket{11}$ are flipped.
+\end{example}
+
+\pagebreak
+
+\begin{explanation}
+    CNOT is a unitary matrix:\\
+    $\begin{bmatrix}
+        1 & 0 & 0 & 0\\
+        0 & 1 & 0 & 0\\
+        0 & 0 & 0 & 1\\
+        0 & 0 & 1 & 0
+    \end{bmatrix} \begin{bmatrix}
+        1 & 0 & 0 & 0\\
+        0 & 1 & 0 & 0\\
+        0 & 0 & 0 & 1\\
+        0 & 0 & 1 & 0
+    \end{bmatrix} = \begin{bmatrix}
+        1 & 0 & 0 & 0\\
+        0 & 1 & 0 & 0\\
+        0 & 0 & 1 & 0\\
+        0 & 0 & 0 & 1
+    \end{bmatrix}$\\
+    It is its own inverse and its own conjugate transpose.
+\end{explanation}
+
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[shorten >=1pt,node distance=3.5cm,on grid,auto]
+        \node[] (start_top) {$\frac{1}{\sqrt{2}}\ket{0} + \frac{1}{\sqrt{2}}\ket{1}$};
+        \node[right of=start_top,circle,draw=black,fill=black] (end_top) {};
+        \coordinate[right of=end_top] (beyond_top);
+        \node[below of=start_top] (start_bottom) {$\ket{0}$};
+        \node[right of=start_bottom] (end_bottom) {$\oplus$};
+        \coordinate[right of=end_bottom] (beyond_bottom);
+        
+        \path[-,shorten >= 2pt, shorten <= 2pt]
+            (start_top)
+                edge node {} (end_top)
+            (end_top)
+                edge node {} (end_bottom)
+                edge node {} (beyond_top)
+            (start_bottom)
+                edge node {} (end_bottom)
+            (end_bottom)
+                edge node {} (beyond_bottom);
+    \end{tikzpicture}
+    \caption{$(\frac{1}{\sqrt{2}}\ket{0} + \frac{1}{\sqrt{2}}\ket{1}) \otimes \ket{0} = \frac{1}{\sqrt{2}}\ket{00} + \frac{1}{\sqrt{2}}\ket{10} = \frac{1}{\sqrt{2}}\begin{bmatrix}
+        1\\
+        0\\
+        0\\
+        0
+    \end{bmatrix} \begin{bmatrix}
+        0\\
+        0\\
+        1\\
+        0
+    \end{bmatrix} = \frac{1}{\sqrt{2}}\begin{bmatrix}
+        1\\
+        0\\
+        1\\
+        0
+    \end{bmatrix}$}\label{fig:lec10fig1}
+\end{figure}
+
+$\frac{1}{\sqrt{2}}\begin{bmatrix}
+    1\\
+    0\\
+    0\\
+    1
+\end{bmatrix} = \frac{1}{\sqrt{2}}\begin{bmatrix}
+    1\\
+    0\\
+    0\\
+    0
+\end{bmatrix} + \frac{1}{\sqrt{2}}\begin{bmatrix}
+    0\\
+    0\\
+    0\\
+    1
+\end{bmatrix} = \frac{1}{\sqrt{2}}\ket{00} + \frac{1}{\sqrt{2}}\ket{11}$.
+
+Quantum gates with one input:
+\begin{enumerate}
+    \item Pauli's gate
+    \item Identity gate ($\begin{bmatrix}
+        1 & 0\\
+        0 & 1
+    \end{bmatrix}$)
+    \item Z gate ($\begin{bmatrix}
+        1 & 0\\
+        0 & -1
+    \end{bmatrix}$; relative phase shift)
+    \item X gate ($\begin{bmatrix}
+        0 & 1\\
+        1 & 0
+    \end{bmatrix}$; flips the probability amplitudes)
+    \item Y gate ($\begin{bmatrix}
+        0 & -i\\
+        i & 0
+    \end{bmatrix}$)
+    \item Hadamard gate ($\frac{1}{\sqrt{2}}\begin{bmatrix}
+        1 & 1\\
+        1 & -1
+    \end{bmatrix}$)
+\end{enumerate}
+All of the above gates are reversible, are equal to their own transpose (except for the Y gate), and yield the identity gate when multiplied by their transpose.
+
+\begin{example}
+    $\mathrm{z}(a\ket{0} + b\ket{1}) = a\ket{0} - b\ket{1}$
+\end{example}
+
+\begin{note}
+    In the above example, we are observing a \emph{relative phase shift}.
+\end{note}
+
+\pagebreak
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[shorten >=1pt,node distance=3.5cm,on grid,auto]
+        \node[] (start_top) {$\ket{0}$};
+        \node[right of=start_top,draw] (h) {$H$};
+        \node[right of=h,circle,draw=black,fill=black] (end_top) {};
+        \coordinate[right of=end_top] (beyond_top);
+        \node[below of=start_top] (start_bottom) {$\ket{0}$};
+        \node[below of=end_top] (end_bottom) {$\oplus$};
+        \coordinate[right of=end_bottom] (beyond_bottom);
+        
+        \path[-]
+            (start_top)
+                edge node {} (h)
+            (h)
+                edge node {$\frac{1}{\sqrt{2}}\ket{0} + \frac{1}{\sqrt{2}}\ket{1}$} (end_top)
+            (end_top)
+                edge node {} (end_bottom)
+                edge node {} (beyond_top)
+            (start_bottom)
+                edge node {} (end_bottom)
+            (end_bottom)
+                edge node {} (beyond_bottom);
+    \end{tikzpicture}
+    \caption{An example of Bell's Circuit, with an input of $\ket{00}$.}\label{fig:lec10fig2}
+\end{figure}
+
+At the start of the circuit, the state of the system is $\ket{0} \otimes \ket{0} = \ket{00}$. After passing through the Hadamard gate, the state of the system is $(\frac{1}{\sqrt{2}} \ket{0} + \frac{1}{\sqrt{2}} \ket{1}) \otimes \ket{0} = \frac{1}{\sqrt{2}}\ket{00} + \frac{1}{\sqrt{2}} \ket{10} = \frac{1}{\sqrt{2}} \begin{bmatrix}
+    1\\
+    0\\
+    0\\
+    0\\
+\end{bmatrix} + \frac{1}{\sqrt{2}} \begin{bmatrix}
+    0\\
+    0\\
+    1\\
+    0
+\end{bmatrix} = \frac{1}{\sqrt{2}} \begin{bmatrix}
+    1\\
+    0\\
+    1\\
+    0
+\end{bmatrix}$. Lastly, after passing through the CNOT gate, the state of the system is $\frac{1}{\sqrt{2}} \begin{bmatrix}
+    1\\
+    0\\
+    0\\
+    1
+\end{bmatrix} = \frac{1}{\sqrt{2}}\begin{bmatrix}
+    1\\
+    0\\
+    0\\
+    0\\
+\end{bmatrix} + \frac{1}{\sqrt{2}} \begin{bmatrix}
+    0\\
+    0\\
+    0\\
+    1
+\end{bmatrix} = \frac{1}{\sqrt{2}} \ket{00} + \frac{1}{\sqrt{2}} \ket{11} = \mathrm{B}(\ket{00})$, which is an entangled state.\\
+
+There is a pattern to Bell's Circuit:\\
+$\mathrm{B}(\ket{00}) = \frac{1}{\sqrt{2}} \ket{00} + \frac{1}{\sqrt{2}} \ket{11}$\\
+$\mathrm{B}(\ket{01}) = \frac{1}{\sqrt{2}} \ket{01} + \frac{1}{\sqrt{2}} \ket{10}$\\
+$\mathrm{B}(\ket{10}) = \frac{1}{\sqrt{2}} \ket{00} - \frac{1}{\sqrt{2}} \ket{11}$\\
+$\mathrm{B}(\ket{11}) = \frac{1}{\sqrt{2}} \ket{01} - \frac{1}{\sqrt{2}} \ket{10}$\\
+
+\begin{exercise}
+    \textbf{Question}: What are the standard basis vectors for $R^4$?\\
+
+    \textbf{Solution}:\\
+    $\begin{bmatrix}
+        1\\
+        0\\
+        0\\
+        0
+    \end{bmatrix}$
+    $\begin{bmatrix}
+        0\\
+        1\\
+        0\\
+        0
+    \end{bmatrix}$
+    $\begin{bmatrix}
+        0\\
+        0\\
+        1\\
+        0
+    \end{bmatrix}$
+    $\begin{bmatrix}
+        0\\
+        0\\
+        0\\
+        1
+    \end{bmatrix}$\\
+    $\ket{00}$, $\ket{01}$, $\ket{10}$, $\ket{11}$
+\end{exercise}
+
+If one were to pass an input through Bell's Circuit, and then to the reverse Bell's Circuit, the output would be the same as the input.
+
+% \subsection{Sub Section 3}
+% \label{sub_sec:sub_section_3}
+
+% \begin{theorem}
+% This is a theorem.
+% \end{theorem}
+% \begin{proof}
+% This is a proof.
+% \end{proof}
+% \begin{example}
+% This is an example.
+% \end{example}
+% \begin{explanation}
+% This is an explanation.
+% \end{explanation}
+% \begin{claim}
+% This is a claim.
+% \end{claim}
+% \begin{corollary}
+% This is a corollary.
+% \end{corollary}
+% \begin{prop}
+% This is a proposition.
+% \end{prop}
+% \begin{lemma}
+% This is a lemma.
+% \end{lemma}
+% \begin{question}
+% This is a question.
+% \end{question}
+% \begin{solution}
+% This is a solution.
+% \end{solution}
+% \begin{exercise}
+% This is an exercise.
+% \end{exercise}
+% \begin{definition}[Definition]
+% This is a definition.
+% \end{definition}
+% \begin{note}
+% This is a note.
+% \end{note}
+
+% subsection sub_section_2 (end)
+
+\newpage

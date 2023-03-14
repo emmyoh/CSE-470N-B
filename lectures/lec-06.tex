@@ -15,7 +15,7 @@
     \begin{adjustbox}{width=\textwidth}
     \begin{tikzpicture}[shorten >=1pt,node distance=3.5cm,on grid,auto]
         \node[draw,rectangle] (a)   {Filter \#1 ($0^{\degree}$)};
-        \node[] (a_left) [left=of a] {$\ket{v} = \frac{1}{\sqrt{2}}\cdot\begin{bmatrix}0\\1\end{bmatrix} + \frac{1}{\sqrt{2}}\cdot\begin{bmatrix}1\\0\end{bmatrix}$};
+        \node[] (a_left) [left=of a] {\begin{adjustbox}{width=3cm}$\ket{v} = \frac{1}{\sqrt{2}}\cdot\begin{bmatrix}0\\1\end{bmatrix} + \frac{1}{\sqrt{2}}\cdot\begin{bmatrix}1\\0\end{bmatrix}$\end{adjustbox}};
         \node[below of=a] (a_below) {Blocked $\begin{bmatrix}0\\1\end{bmatrix}$};
 
         \node[draw,rectangle,right of=a] (b)   {Filter \#2 ($45^{\degree})$};
@@ -28,10 +28,10 @@
                 edge node {} (a)
             (a)
                 edge node {} (a_below)
-                edge node {Through $\begin{bmatrix}1\\0\end{bmatrix}$} (b)           
+                edge node {\begin{adjustbox}{width=1cm}Through $\begin{bmatrix}1\\0\end{bmatrix}$\end{adjustbox}} (b)           
             (b)
                 edge node {} (b_below)
-                edge node {$\begin{bmatrix}\frac{1}{\sqrt{2}}\\-\frac{1}{\sqrt{2}}\end{bmatrix}$} (c)
+                edge node {\begin{adjustbox}{width=1cm}$\begin{bmatrix}\frac{1}{\sqrt{2}}\\-\frac{1}{\sqrt{2}}\end{bmatrix}$\end{adjustbox}} (c)
             (c)
                 edge node {$\begin{bmatrix}0\\1\end{bmatrix}$} (c_right);
     \end{tikzpicture}
