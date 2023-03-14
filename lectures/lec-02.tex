@@ -15,11 +15,11 @@
             (a_left)
                 edge node {} (a)
             (a)
-                edge node {↓ $50\%$} (a_below)
-                edge node {↑ $50\%$} (b)           
+                edge node {$\downarrow \ 50\%$} (a_below)
+                edge node {$\uparrow \ 50\%$} (b)           
             (b)
-                edge node {↓ $100\%$} (b_below)
-                edge node {↑ $0\%$} (b_right);
+                edge node {$\downarrow \ 100\%$} (b_below)
+                edge node {$\uparrow \ 0\%$} (b_right);
     \end{tikzpicture}
     \caption{Two repeated detectors of whether a particle's spin is up or down. The same property is being measured; the percentages heading into the second detector are known.}
     \label{fig:experiment2}
@@ -42,14 +42,14 @@
             (a_left)
                 edge node {} (a)
             (a)
-                edge node {↓ $50\%$} (a_below)
-                edge node {↑ $50\%$} (b)           
+                edge node {$\downarrow \ 50\%$} (a_below)
+                edge node {$\uparrow \ 50\%$} (b)           
             (b)
-                edge node {← $50\%$} (b_below)
-                edge node {→ $50\%$} (c)
+                edge node {$\leftarrow \ 50\%$} (b_below)
+                edge node {$\rightarrow \ 50\%$} (c)
             (c)
-                edge node {↓ $50\%$} (c_below)
-                edge node {↑ $50\%$} (c_right);
+                edge node {$\downarrow \ 50\%$} (c_below)
+                edge node {$\uparrow \ 50\%$} (c_right);
     \end{tikzpicture}
     \caption{Three repeated detectors, now detecting three different properties of a particle. Now, the percentages for spin up or down are not known; the first and last detectors are probabilistically independent because of the middle detector.}
     \label{fig:experiment3}
