@@ -1,0 +1,103 @@
+\lesson{Thu, 16 March 2023, 2:50pm -- 4:10pm}{Week 8, Thursday}
+
+As a reminder, the Pauli-X gate (`NOT' gate) is $X = \begin{bmatrix}
+    0 & 1 \\
+    1 & 0\\
+\end{bmatrix}$, the Pauli-Y gate is $Y = \begin{bmatrix}
+    0 & -1 \\
+    1 & 0\\
+\end{bmatrix}$, and the Pauli-Z gate is $Z = \begin{bmatrix}
+    1 & 0 \\
+    0 & -1\\
+\end{bmatrix}$.
+
+The Pauli gates perform the following operations on the basis states:\\
+\begin{itemize}
+    \item $X(a \ket{0} + b \ket{1}) = b \ket{0} + a \ket{1}$
+    \item $Y(a \ket{0} + b \ket{1}) = b \ket{0} - a \ket{1}$
+    \item $Z(a \ket{0} + b \ket{1}) = a \ket{0} - b \ket{1}$
+\end{itemize}
+
+If one were to pass the following inputs into Bell's Circuit ($B$), these would be the outputs:
+\begin{itemize}
+    \item $B(\ket{00}) = \frac{1}{\sqrt{2}} \ket{00} + \frac{1}{\sqrt{2}} \ket{11}$
+    \item $B(\ket{01}) = \frac{1}{\sqrt{2}} \ket{01} + \frac{1}{\sqrt{2}} \ket{10}$
+    \item $B(\ket{10}) = \frac{1}{\sqrt{2}} \ket{00} - \frac{1}{\sqrt{2}} \ket{11}$
+    \item $B(\ket{11}) = \frac{1}{\sqrt{2}} \ket{01} - \frac{1}{\sqrt{2}} \ket{10}$
+\end{itemize}
+
+\begin{definition}
+    \emph{Quantum communication} is the exploitation of entanglement to transmit information.
+\end{definition}
+\subsection{Quantum Communication Protocols}
+\label{sub_sec:quantum_communication_protocols}
+\begin{itemize}
+    \item Superdense coding
+        \begin{itemize}
+            \item To communicate a number of classical bits by use of a smaller number of qubits. In other words, using one qubit to send two classical bits.
+            \item Start with two entangled qubits in superposition, one sent to Alice, and the other sent to Bob.
+            \item Alice wants to send two classical bits to Bob; she can send either $00$, $01$, $10$, or $11$---essentially, she is going to send Bob one qubit.
+            \item If she wants to send $00$, she does nothing (she applies the identity gate, $I$). The quantum state is unchanged, being $\frac{1}{\sqrt{2}} \ket{00} + \frac{1}{\sqrt{2}} \ket{11}$.
+            \item If she wants to send $01$, she applies the Pauli-X (or `NOT') gate, $X$. The quantum state is now $\frac{1}{\sqrt{2}} \ket{10} + \frac{1}{\sqrt{2}} \ket{01}$.
+            \item If she wants to send $10$, she applies the Pauli-Z gate, $Z$. The quantum state is now $\frac{1}{\sqrt{2}} \ket{00} - \frac{1}{\sqrt{2}} \ket{11}$.
+            \item If she wants to send $11$, she applies the Pauli-Y gate, $Y$. The quantum state is now $\frac{1}{\sqrt{2}} \ket{01} - \frac{1}{\sqrt{2}} \ket{10}$.
+            \item The quantum states that result from Alice's transformations match our expected outputs of Bell's circuit. Knowing this, Bob now applies the reverse Bell circuit, $B^{\dagger}$, to the qubit he received from Alice. This will give him the two classical bits he wanted to receive.
+        \end{itemize}
+    \item Quantum teleportation
+        \begin{itemize}
+            \item Sending two classical bits to transmit (`teleport') one qubit.
+            \item Bob and Alice share an entangled pair, and Alice has another qubit of her own in some state, $a \ket{0} + b \ket{1}$. She wants to send Bob her qubit, but she cannot clone it, so she must `cut-and-paste' it (she will lose it, but Bob will have it).
+            \item Alice entangles her two qubits, entangling all three qubits. She first applies the Hadamard gate, with the quantum state becoming $(a \ket{0} + b \ket{1}) \otimes (\frac{1}{\sqrt{2}} \ket{00} + \frac{1}{\sqrt{2}} \ket{11}) = \frac{a}{\sqrt{2}} \ket{000} + \frac{a}{\sqrt{2}} \ket{011} + \frac{b}{\sqrt{2}} \ket{100} + \frac{b}{\sqrt{2}} \ket{111} = \frac{a}{\sqrt{2}} \ket{00} \otimes \ket{0} + \frac{a}{\sqrt{2}} \ket{01} \otimes \ket{1} + \frac{b}{\sqrt{2}} \ket{10} \otimes \ket{0} + \frac{b}{\sqrt{2}} \ket{11} \otimes \ket{1}$. After applying the CNOT gate to her qubits, the state becomes $\frac{a}{\sqrt{2}} \ket{00} \otimes \ket{0} + \frac{a}{\sqrt{2}} \ket{01} \otimes \ket{1} + \frac{b}{\sqrt{2}} \ket{11} \otimes \ket{0} + \frac{b}{\sqrt{2}} \ket{10} \otimes \ket{11} = \frac{a}{\sqrt{2}} \ket{0} \otimes \ket{0} \otimes \ket{0} + \frac{a}{\sqrt{2}} \ket{0} \otimes \ket{1} \otimes \ket{1} + \frac{b}{\sqrt{2}} \ket{1} \otimes \ket{1} \otimes \ket{0} + \frac{b}{\sqrt{2}} \ket{1} \otimes \ket{0} \otimes \ket{11}$. The state of the qubit Alice wants to send to Bob is now entangled with the two qubits she shared with Bob.
+            \item She then applies the Hadamard gate to the qubit which she wants to send, and the state becomes $\frac{a}{\sqrt{2}}(\frac{1}{\sqrt{2}} \ket{0} + \frac{1}{\sqrt{2}} \ket{1}) \otimes \ket{0} \otimes \ket{0} + \frac{a}{\sqrt{2}}(\frac{1}{\sqrt{2}} \ket{0} + \frac{1}{\sqrt{2}} \ket{1}) \otimes \ket{1} \otimes \ket{1} + \frac{b}{\sqrt{2}} (\frac{1}{\sqrt{2}} \ket{0} - \frac{1}{\sqrt{2}} \ket{1}) \otimes \ket{1} \otimes \ket{0} + \frac{b}{\sqrt{2}}(\frac{1}{\sqrt{2}} \ket{0} - \frac{1}{\sqrt{2}} \ket{1}) \otimes \ket{0} \otimes \ket{1} = \frac{1}{2} \ket{00} \otimes (a \ket{0} + b\ket{1}) + \frac{1}{2} \ket{01} \otimes (a \ket{1} + b \ket{0}) + \frac{1}{2} \ket{10} \otimes (a \ket{0} - b \ket{1}) + \frac{1}{2} \ket{11} \otimes (a \ket{1} - b \ket{0})$.
+            \item If Alice measures $\ket{00}$, Bob's state is $a \ket{0} + b \ket{1}$. If Alice measures $\ket{01}$, Bob's state is $a \ket{1} + b \ket{0}$. If Alice measures $\ket{10}$, Bob's state is $a \ket{0} - b \ket{1}$. If Alice measures $\ket{11}$, Bob's state is $a \ket{1} - b \ket{1}$.
+            \item Alice now sends Bob the two classical bits she measured (ie, sends $00$ if $\ket{00}$, $10$ if $\ket{10}$, etc). If Bob gets $00$, he does nothing (he applies the identity gate, $I$); his state is $a \ket{0} + b\ket{1}$. If Bob gets $01$, he applies the Pauli-X gate, $X$; his state is $a \ket{0} + b \ket{1}$. If Bob gets $10$, he applies the Pauli-Z gate, $Z$. If Bob gets $11$, he applies the Pauli-Y gate, $Y$.
+        \end{itemize}
+\end{itemize}
+% subsection quantum_communication_protocols (end)
+
+% \subsection{Sub Section 3}
+% \label{sub_sec:sub_section_3}
+
+% \begin{theorem}
+% This is a theorem.
+% \end{theorem}
+% \begin{proof}
+% This is a proof.
+% \end{proof}
+% \begin{example}
+% This is an example.
+% \end{example}
+% \begin{explanation}
+% This is an explanation.
+% \end{explanation}
+% \begin{claim}
+% This is a claim.
+% \end{claim}
+% \begin{corollary}
+% This is a corollary.
+% \end{corollary}
+% \begin{prop}
+% This is a proposition.
+% \end{prop}
+% \begin{lemma}
+% This is a lemma.
+% \end{lemma}
+% \begin{question}
+% This is a question.
+% \end{question}
+% \begin{solution}
+% This is a solution.
+% \end{solution}
+% \begin{exercise}
+% This is an exercise.
+% \end{exercise}
+% \begin{definition}[Definition]
+% This is a definition.
+% \end{definition}
+% \begin{note}
+% This is a note.
+% \end{note}
+
+% subsection sub_section_2 (end)
+
+\newpage
