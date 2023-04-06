@@ -1,0 +1,137 @@
+\lesson{Thu, 6 April 2023, 2:50pm -- 4:10pm}{Week 11, Thursday}
+
+\begin{definition}
+    \emph{Quantum parallelism} refers to the speedup that we experience with quantum algorithms, as opposed to classical algorithms, which results from the fact that we put our input into a superposition. A quantum algorithm is designed to manipulate these superpositions to get useful results.
+\end{definition}
+
+\begin{definition}
+    $P$ is the set of problems for which there is a classical algorithm that can solve it in polynomial time.
+    $NP$ is the set of problems that can be verified by a classical algorithm in polynomial time.
+\end{definition}
+
+The typical steps in a quantum algorithm are as follows:
+\begin{enumerate}
+    \item Begin with qubits in a particular classical state
+    \item Put the system into a superposition of many states
+    \item Act on the superposition with several quantum gates
+\end{enumerate}
+
+\begin{definition}
+    \emph{Deutsch's algorithm} attempts to minimise the query complexity when faced with the following problem:\\
+
+    Given a function $f: \{0, 1\} \rightarrow \{0, 1\}$, is this function constant or balanced?\\
+    
+    Possible functions could be:
+    \begin{itemize}
+        \item Constant - 0 ($f(0)=0$, $f(1)=1$)
+        \item Constant - 1 ($f(0)=1$, $f(1)=1$)
+        \item Identity ($f(0)=0$, $f(1)=1$)
+        \item Swap ($f(0)=1$, $f(1)=0$)
+    \end{itemize}
+
+    Instead of requiring both $f(0)$ and $f(1)$ to determine the nature of $f$, Deutsch's algorithm requires only one.\\
+    The input to the algorithm is the function, $f$. The algorithm represents the possible $f$ functions with quantum gates:
+
+    Constant - 0:\\
+    $\begin{bmatrix}
+        1 & 1\\
+        0 & 0
+    \end{bmatrix} \cdot \ket{0} = \ket{0}$\\
+
+    $\begin{bmatrix}
+        1 & 1\\
+        0 & 0
+    \end{bmatrix} \cdot \ket{1} = \ket{0}$\\
+
+
+    Constant - 1:\\
+    $\begin{bmatrix}
+        0 & 0\\
+        1 & 1
+    \end{bmatrix} \cdot \ket{0} = \ket{1}$\\
+
+    $\begin{bmatrix}
+        0 & 0\\
+        1 & 1
+    \end{bmatrix} \cdot \ket{1} = \ket{1}$\\
+
+
+    Identity:\\
+    $\begin{bmatrix}
+        1 & 0\\
+        0 & 1
+    \end{bmatrix} \cdot \ket{0} = \ket{0}$\\
+
+    $\begin{bmatrix}
+        1 & 0\\
+        0 & 1
+    \end{bmatrix} \cdot \ket{1} = \ket{1}$\\
+
+
+    Swap:\\
+    $\begin{bmatrix}
+        0 & 1\\
+        1 & 0
+    \end{bmatrix} \cdot \ket{0} = \ket{1}$\\
+
+    $\begin{bmatrix}
+        0 & 1\\
+        1 & 0
+    \end{bmatrix} \cdot \ket{1} = \ket{0}$\\        
+\end{definition}
+
+\begin{figure}[ht]
+    \centering
+    \begin{quantikz}
+        \lstick{$\ket{0}$\\$x$}\slice{A} & \gate{H}\slice{B} & \gate[wires=2]{F}\slice{C} & \gate{H}\slice{D} & \meter{} & \qw \\
+        \lstick{$\ket{1}$\\$y$} & \gate{H} & \qw & \qw & \qw & \qw
+    \end{quantikz}
+    \caption{The circuit for Deutsch's algorithm, where $F(\ket{xy}) = F(x, y) = x \otimes (y \oplus f(y))$. The state of the system at A is $\ket{01}$, $\frac{1}{2}(\ket{00}-\ket{01}+\ket{10}-\ket{11})$ at B, $\frac{1}{2}(\ket{0} \otimes f(0) - \ket{0} \otimes \overline{f(0)} + \ket{1} \otimes f(1) - \ket{1} \otimes \overline{f(1)})$ at C, and either $\ket{0}$ or $\ket{1}$ at D.}\label{fig:lec13fig1}
+\end{figure}
+
+% \subsection{Sub Section 3}
+% \label{sub_sec:sub_section_3}
+
+% \begin{theorem}
+% This is a theorem.
+% \end{theorem}
+% \begin{proof}
+% This is a proof.
+% \end{proof}
+% \begin{example}
+% This is an example.
+% \end{example}
+% \begin{explanation}
+% This is an explanation.
+% \end{explanation}
+% \begin{claim}
+% This is a claim.
+% \end{claim}
+% \begin{corollary}
+% This is a corollary.
+% \end{corollary}
+% \begin{prop}
+% This is a proposition.
+% \end{prop}
+% \begin{lemma}
+% This is a lemma.
+% \end{lemma}
+% \begin{question}
+% This is a question.
+% \end{question}
+% \begin{solution}
+% This is a solution.
+% \end{solution}
+% \begin{exercise}
+% This is an exercise.
+% \end{exercise}
+% \begin{definition}[Definition]
+% This is a definition.
+% \end{definition}
+% \begin{note}
+% This is a note.
+% \end{note}
+
+% subsection sub_section_2 (end)
+
+\newpage
