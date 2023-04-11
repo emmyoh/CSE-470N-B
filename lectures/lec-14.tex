@@ -1,0 +1,160 @@
+\lesson{Tue, 11 April 2023, 2:50pm -- 4:10pm}{Week 12, Tuesday}
+
+In Figure~\ref{fig:lec13fig1}, we saw that the circuit for Deutsch's algorithm has four `slices', A, B, C, and D. Slice A is fairly straightforward, $\ket{01}$, being the inputs, and slice D is also fairly straightforward, either $\ket{0}$ or $\ket{1}$, being the possible outputs.
+
+The state of the system at B is $\frac{1}{\sqrt{2}} (\ket{0} + \ket{1}) \otimes \frac{1}{\sqrt{2}} (\ket{0} - \ket{1}) = \frac{1}{2} (\ket{00} - \ket{01} + \ket{10} - \ket{11})$. The state of the system at C is $F(\frac{1}{2} (\ket{00} - \ket{01} + \ket{10} - \ket{11})) = \frac{1}{2}(F(\ket{00}) - F(\ket{01}) + F(\ket{10}) - F(\ket{11})) = \frac{1}{2}(\ket{0} \otimes (0 \oplus f(0)) - \ket{0} \otimes (1 \oplus f(0))) + (\ket{1} \otimes (0 \oplus f(1)) - \ket{1} \otimes (1 \oplus f(1))) = \frac{1}{2}(\ket{0} \otimes f(0) - \ket{0} \otimes \overline{f(0)} + \ket{1} \otimes f(1) - \ket{1} \otimes \overline{f(1)})$.
+
+The state of the system at C is therefore a superposition of the four possible outputs of the function, $f$:\\
+
+Case 1 ($f(0) = 0$, $f(1) = 0$):\\
+$\frac{1}{2}(\ket{00} - \ket{01} + \ket{10} - \ket{11}) = \frac{1}{\sqrt{2}} (\ket{0} + \ket{1}) \otimes \frac{1}{\sqrt{2}} (\ket{0} - \ket{1})$\\
+
+Case 2 ($f(0) = 1$, $f(1) = 1$):\\
+$\frac{1}{2}(\ket{01} - \ket{00} + \ket{11} - \ket{10}) = -\frac{1}{2} (\ket{00} - \ket{01} + \ket{10} - \ket{11}) = -\frac{1}{\sqrt{2}} (\ket{0} + \ket{1}) \otimes \frac{1}{\sqrt{2}} (\ket{0} - \ket{1})$\\
+
+Case 3 ($f(0) = 0$, $f(1) = 1$):\\
+$\frac{1}{2}(\ket{00} - \ket{01} + \ket{11} - \ket{10}) = \frac{1}{\sqrt{2}} (\ket{0} - \ket{1}) \otimes \frac{1}{\sqrt{2}} (\ket{0} - \ket{1})$\\
+
+Case 4 ($f(0) = 1$, $f(1) = 0$):\\
+$\frac{1}{2}(\ket{01} - \ket{00} + \ket{10} - \ket{11}) = -\frac{1}{2} (\ket{00} - \ket{01} + \ket{10} - \ket{11}) = -\frac{1}{\sqrt{2}} (\ket{0} + \ket{1}) \otimes \frac{1}{\sqrt{2}} (\ket{0} - \ket{1})$\\
+
+For Case 1, D can be evaluated as $H(\frac{1}{\sqrt{2}}\ket{0} + \frac{1}{\sqrt{2}}\ket{1}) = \ket{0}$. For Case 2, D can be evaluated as $H(-\frac{1}{\sqrt{2}}\ket{0} + \frac{1}{\sqrt{2}}\ket{1}) = -\ket{0}$. For Case 3, D can be evaluated as $H(\frac{1}{\sqrt{2}}\ket{0} - \frac{1}{\sqrt{2}}\ket{1}) = \ket{1}$. For Case 4, D can be evaluated as $H(-\frac{1}{\sqrt{2}}\ket{0} - \frac{1}{\sqrt{2}}\ket{1}) = -\ket{1}$.
+
+\begin{definition}
+    The \emph{Deutsch-Jozsa algorithm} is a quantum algorithm that solves the following problem:\\
+
+    Given a function $f: \{0,1\}^n \rightarrow \{0,1\}$, that is either constant or balanced, determine which it is.\\
+
+    If $n=4$, the problem requires $9$ function calls in the worst case. If $n=3$, the problem requires $5$ function calls in the worst case. If $n=2$, the problem requires $3$ function calls in the worst case. This relationship is modeled by the expression $2^{n-1} + 1$. The Deutsch-Jozsa algorithm requires $1$ function call; it operates in constant time.
+\end{definition}
+
+\begin{definition}
+    The $H^{\otimes 2}$ gate is $\frac{1}{2} \begin{bmatrix}
+        1 & 1 & 1 & 1\\
+        1 & -1 & 1 & -1\\
+        1 & 1 & -1 & -1\\
+        1 & -1 & -1 & 1
+    \end{bmatrix} = \frac{1}{\sqrt{2}} \begin{bmatrix}
+        H & H\\
+        H & -H\\
+    \end{bmatrix}$.
+
+    It functions as follows:\\
+
+    $H(\ket{0}) \otimes H(\ket{0}) = \frac{1}{\sqrt{2}} (\ket{0} + \ket{1}) \otimes \frac{1}{\sqrt{2}} (\ket{0} + \ket{1}) = \frac{1}{2} (\ket{00} + \ket{01} + \ket{10} + \ket{11}) = \frac{1}{2} \begin{bmatrix}
+        1\\
+        1\\
+        1\\
+        1
+    \end{bmatrix}$\\
+    
+    $H(\ket{0}) \otimes H(\ket{1}) = \frac{1}{2} (\ket{00} - \ket{01} + \ket{10} - \ket{11}) = \frac{1}{2} \begin{bmatrix}
+        1\\
+        -1\\
+        1\\
+        -1
+    \end{bmatrix}$\\
+    
+    $H(\ket{1}) \otimes H(\ket{0}) = \frac{1}{\sqrt{2}} (\ket{0} - \ket{1}) \otimes \frac{1}{\sqrt{2}} (\ket{0} + \ket{1}) = \frac{1}{2} (\ket{00} + \ket{01} - \ket{10} - \ket{11}) = \frac{1}{2} \begin{bmatrix}
+        1\\
+        1\\
+        -1\\
+        -1
+    \end{bmatrix}$\\
+    
+    $H(\ket{1}) \otimes H(\ket{1}) = \frac{1}{2} (\ket{00} - \ket{10}) \otimes \frac{1}{2}(\ket{0} - \ket{1}) = \frac{1}{2}(\ket{00} - \ket{01} - \ket{10} + \ket{11}) = \frac{1}{2} \begin{bmatrix}
+        1\\
+        -1\\
+        -1\\
+        1
+    \end{bmatrix}$\\
+\end{definition}
+
+\begin{note}
+    $H^{\otimes 3} = \frac{1}{\sqrt{2}} \begin{bmatrix}
+        H^{\otimes 2} & H^{\otimes 2}\\
+        H^{\otimes 2} & -H^{\otimes 2}\\
+    \end{bmatrix}$.
+\end{note}
+
+\begin{figure}[ht]
+    \centering
+    \begin{quantikz}
+        \lstick{$\ket{00}$\\$x$}\slice{A} & \gate{H^{\otimes 2}}\slice{B} & \gate[wires=2]{F}\slice{C} & \gate{H^{\otimes 2}}\slice{D} & \meter{} & \qw \\
+        \lstick{$\ket{1}$\\$y$} & \gate{H} & \qw & \qw & \qw & \qw
+    \end{quantikz}
+    \caption{The circuit for the Deutsch-Jozsa algorithm when $n = 2$, where $F(x_1, x_2, y) = \ket{x_1 x_2} \otimes (y \oplus f(x_1, x_2))$. At D, the state can be either $\ket{00}$, $\ket{01}$, $\ket{10}$, or $\ket{11}$.}\label{fig:lec14fig1}
+\end{figure}
+
+At slice A, the state is $\ket{001}$. At slice B, the state is $\frac{1}{\sqrt{2}} \begin{bmatrix}
+    1 & 1 & 1 & 1\\
+    1 & -1 & 1 & -1\\
+    1 & 1 & -1 & -1\\
+    1 & -1 & -1 & 1
+\end{bmatrix} \cdot \begin{bmatrix}
+    1\\
+    0\\
+    0\\
+    0
+\end{bmatrix} = \frac{1}{2} \begin{bmatrix}
+    1\\
+    1\\
+    1\\
+    1
+\end{bmatrix} = \frac{1}{2} (\ket{00} + \ket{01} + \ket{10} + \ket{11})$. Expressed differently, $\frac{1}{2}(\ket{00} + \ket{01} + \ket{10} + \ket{11}) \otimes \frac{1}{\sqrt{2}} (\ket{0} - \ket{1}) = \frac{1}{2\sqrt{2}} (\ket{000} - \ket{001} + \ket{010} - \ket{011} + \ket{100} - \ket{101} + \ket{110} - \ket{111})$. At slice C, the state is $F(\frac{1}{2\sqrt{2}} (\ket{000} - \ket{001} + \ket{010} - \ket{011} + \ket{100} - \ket{101} + \ket{110} - \ket{111})) = \frac{1}{2\sqrt{2}} (F(\ket{000}) - F(\ket{001}) + F(\ket{010}) - F(\ket{011}) + F(\ket{100}) - F(\ket{101}) + F(\ket{110}) - F(\ket{111})) = \frac{1}{2\sqrt{2}} (\ket{00} \otimes (0 \oplus f(0)) - \ket{00} \otimes (1 \oplus f(00)) + \ket{01} \otimes (0 \oplus f(01)) - \ket{01} \otimes (1 \oplus f(01)) + \ket{10} \otimes (0 \oplus f(10)) - \ket{10} \otimes (1 \oplus f(10)) + \ket{11} \otimes (0 \oplus f(11)) - \ket{11} \otimes (1 \oplus f(11))) = \frac{1}{2\sqrt{2}}(\ket{00} \otimes f(00) - \ket{00} \otimes \overline{f(00)} + \ket{01 \otimes f(01) - \ket{01} \otimes \overline{f(01)} + \ket{01} \otimes f(10)} - \ket{10} \otimes \overline{f(10)} + \ket{11} \otimes f(11) - \ket{11} \otimes \overline{f(11)})$.
+
+\begin{figure}[ht]
+    \centering
+    \begin{quantikz}
+        \lstick{$\ket{0}^n$\\$x$}\slice{A} & \gate{H^{\otimes n}}\slice{B} & \gate[wires=2]{F}\slice{C} & \gate{H^{\otimes n}}\slice{D} & \meter{} & \qw \\
+        \lstick{$\ket{1}$\\$y$} & \gate{H} & \qw & \qw & \qw & \qw
+    \end{quantikz}
+    \caption{The general circuit for the Deutsch-Jozsa algorithm.}\label{fig:lec14fig2}
+\end{figure}
+
+% \subsection{Sub Section 3}
+% \label{sub_sec:sub_section_3}
+
+% \begin{theorem}
+% This is a theorem.
+% \end{theorem}
+% \begin{proof}
+% This is a proof.
+% \end{proof}
+% \begin{example}
+% This is an example.
+% \end{example}
+% \begin{explanation}
+% This is an explanation.
+% \end{explanation}
+% \begin{claim}
+% This is a claim.
+% \end{claim}
+% \begin{corollary}
+% This is a corollary.
+% \end{corollary}
+% \begin{prop}
+% This is a proposition.
+% \end{prop}
+% \begin{lemma}
+% This is a lemma.
+% \end{lemma}
+% \begin{question}
+% This is a question.
+% \end{question}
+% \begin{solution}
+% This is a solution.
+% \end{solution}
+% \begin{exercise}
+% This is an exercise.
+% \end{exercise}
+% \begin{definition}[Definition]
+% This is a definition.
+% \end{definition}
+% \begin{note}
+% This is a note.
+% \end{note}
+
+% subsection sub_section_2 (end)
+
+\newpage

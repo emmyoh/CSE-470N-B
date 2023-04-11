@@ -23,7 +23,7 @@ The typical steps in a quantum algorithm are as follows:
     
     Possible functions could be:
     \begin{itemize}
-        \item Constant - 0 ($f(0)=0$, $f(1)=1$)
+        \item Constant - 0 ($f(0)=0$, $f(1)=0$)
         \item Constant - 1 ($f(0)=1$, $f(1)=1$)
         \item Identity ($f(0)=0$, $f(1)=1$)
         \item Swap ($f(0)=1$, $f(1)=0$)
@@ -86,8 +86,10 @@ The typical steps in a quantum algorithm are as follows:
         \lstick{$\ket{0}$\\$x$}\slice{A} & \gate{H}\slice{B} & \gate[wires=2]{F}\slice{C} & \gate{H}\slice{D} & \meter{} & \qw \\
         \lstick{$\ket{1}$\\$y$} & \gate{H} & \qw & \qw & \qw & \qw
     \end{quantikz}
-    \caption{The circuit for Deutsch's algorithm, where $F(\ket{xy}) = F(x, y) = x \otimes (y \oplus f(y))$. The state of the system at A is $\ket{01}$, $\frac{1}{2}(\ket{00}-\ket{01}+\ket{10}-\ket{11})$ at B, $\frac{1}{2}(\ket{0} \otimes f(0) - \ket{0} \otimes \overline{f(0)} + \ket{1} \otimes f(1) - \ket{1} \otimes \overline{f(1)})$ at C, and either $\ket{0}$ or $\ket{1}$ at D.}\label{fig:lec13fig1}
+    \caption{The circuit for Deutsch's algorithm, where $F(\ket{xy}) = F(\ket{x}, \ket{y}) = \ket{x} \otimes (\ket{y} \oplus f(\ket{x}))$; $F$ is the controlled version of the quantum gate representation of the function, $f$, whichever of the four functions it may be. The state of the system at A is $\ket{01}$, $\frac{1}{2}(\ket{00}-\ket{01}+\ket{10}-\ket{11})$ at B, $\frac{1}{2}(\ket{0} \otimes f(0) - \ket{0} \otimes \overline{f(0)} + \ket{1} \otimes f(1) - \ket{1} \otimes \overline{f(1)})$ at C, and either $\ket{0}$ or $\ket{1}$ at D.}\label{fig:lec13fig1}
 \end{figure}
+
+\pagebreak
 
 % \subsection{Sub Section 3}
 % \label{sub_sec:sub_section_3}
