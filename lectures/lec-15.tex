@@ -1,0 +1,89 @@
+\lesson{Thu, 20 April 2023, 2:50pm -- 4:10pm}{Week 13, Thursday}
+
+\begin{definition}
+    \emph{Simon's periodicity algorithm} is a probabilistic algorithm which involves a quantum and a classical part; it solves the following problem:\\
+
+    Given a function $f: \{0, 1\}^n \rightarrow \{0, 1\}^n$ that is periodic, find its period. A period function is $f(x) = f(x \oplus c)$, where $c$ is the period.
+\end{definition}
+
+\begin{figure}[ht]
+    \centering
+    \begin{quantikz}
+        \lstick{$\ket{0}^n$\\$x$} & \qw\qwbundle{n} & \gate{H^{\otimes n}} & \qw\qwbundle{n} & \gate[wires=2]{F} & \qw\qwbundle{n} & \gate{H^{\otimes n}} & \qw\qwbundle{n} & \meter{} & \qw \\
+        \lstick{$\ket{0}^n$\\$y$} & \qw\qwbundle{n} & \qw & \qw & \qw & \qw\qwbundle{n} & \qw & \qw & \qw & \qw
+    \end{quantikz}
+    \caption{The general circuit for Simon's periodicity algorithm.}\label{fig:lec15fig1}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \begin{quantikz}
+        \lstick{$\ket{00}$\\$x$}\slice{A} & \qw\qwbundle{2} & \gate{H^{\otimes 2}}\slice{B} & \qw\qwbundle{2} & \gate[wires=2]{F}\slice{C} & \qw\qwbundle{n} & \gate{H^{\otimes 2}}\slice{D} & \qw\qwbundle{2} & \meter{} & \qw \\
+        \lstick{$\ket{00}$\\$y$} & \qw\qwbundle{2} & \qw & \qw & \qw & \qw\qwbundle{2} & \qw & \qw & \qw & \qw
+    \end{quantikz}
+    \caption{The circuit for Simon's periodicity algorithm when $n = 2$, where $F(x_1x_2, y_1y_2) = \ket{x_1x_2} \otimes (y_1y_2 \oplus f(x_1x_2)) = \ket{x_1x_2} \otimes f(x_1x_2)$.}\label{fig:lec15fig2}
+\end{figure}
+
+If $\ket{x}$ is an answer that you get from Simon's algorithm, it is \emph{always} true that $x \cdot c = 0$, where $c$ is the period and $x$ is a series of classical bits.\\
+
+Suppose we run the algorithm, when $n = 5$, and we get an answer of $1 0 1 0 0$. This means that $1 \cdot c_0 \oplus 0 \cdot c_1 \oplus 1 \cdot c_2 \oplus 0 \cdot c_3 \oplus 0 \cdot c_4 = 0$, $c_0 \oplus c_2 = 0$, so $c_0 = c_2$. Suppose we run the algorithm again, and get $0 0 1 0 0$; $0 \cdot c_0 \oplus 0 \cdot c_1 \oplus 1 \cdot c_2 \oplus 0 \cdot c_3 \oplus 0 \cdot c_4 = 0 \oplus 0 \oplus c_2 \oplus 0 \oplus 0 = 0$, meaning $c_2 = 0$. If $c_2 = 0$ and $c_0 = c_2$, then $c_0 = 0$. Suppose we run the algorithm a third time, and get $1 1 1 1 0$; $c_0 \oplus c_1 \oplus c_2 \oplus c_3 = 0 = 0 \oplus c_1 \oplus 0 \oplus c_3 = 0 = c_1 \oplus c_3 = 0 = c_1 = 3$. Suppose we run the algorithm a fourth time and get $0 0 1 1 1$; we know that $c_2 \oplus c_3 \oplus c_4 = 0 = c_3 \oplus c_4 = 0$, meaning $c = 0 1 0 1 1$.
+
+\begin{definition}
+    \emph{Grover's search algorithm} is an algorithm that solves the following problem:\\
+
+    Given a function that takes, as input, $n$ qubits, and selects one of them, find the value selected.
+
+    \begin{equation*}
+        f(x)=\begin{cases}
+                  1 \quad &\text{if} \, x \neq x_0 \\
+                  0 \quad &\text{if} \, x = x_0 \\
+             \end{cases}
+    \end{equation*}
+\end{definition}
+
+% \subsection{Sub Section 3}
+% \label{sub_sec:sub_section_3}
+
+% \begin{theorem}
+% This is a theorem.
+% \end{theorem}
+% \begin{proof}
+% This is a proof.
+% \end{proof}
+% \begin{example}
+% This is an example.
+% \end{example}
+% \begin{explanation}
+% This is an explanation.
+% \end{explanation}
+% \begin{claim}
+% This is a claim.
+% \end{claim}
+% \begin{corollary}
+% This is a corollary.
+% \end{corollary}
+% \begin{prop}
+% This is a proposition.
+% \end{prop}
+% \begin{lemma}
+% This is a lemma.
+% \end{lemma}
+% \begin{question}
+% This is a question.
+% \end{question}
+% \begin{solution}
+% This is a solution.
+% \end{solution}
+% \begin{exercise}
+% This is an exercise.
+% \end{exercise}
+% \begin{definition}[Definition]
+% This is a definition.
+% \end{definition}
+% \begin{note}
+% This is a note.
+% \end{note}
+
+% subsection sub_section_2 (end)
+
+\newpage
